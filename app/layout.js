@@ -1,15 +1,3 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -19,8 +7,40 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
+    
+    <link rel="stylesheet" href="assets/css/bootstrap-lib/bootstrap.min.css" />
+    
+    <link rel="stylesheet" href="assets/css/responsive.css"/>
+    
+    <link rel="stylesheet" href="assets/font-awesome-lib/icon/font-awesome.min.css" />
+    
+    <link rel="stylesheet" href="assets/css/slick.min.css"/>
+
+    <link rel="stylesheet" href="assets/css/aos.css"/>
+      </head>
+      <body>
+        <div class="site-wrapper">
         {children}
+        </div>
+        <button onclick="scrollToTop()" id="backToTopBtn"><i className="fa-solid fa-arrow-turn-up"></i></button>
+
+    
+    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/javascript-lib/bootstrap.min.js"></script>
+  
+    <script src="assets/js/jquery.js"></script>
+    
+    <script src="assets/js/slick.min.js"></script>
+
+    <script src="assets/js/custom.js"></script>
+    
+    <script src="assets/js/waypoints.min.js"></script>
+    
+    <script src="assets/js/aos.js"></script>
+    <script>AOS.init({once:true,duration:1500,});</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"afef85246d6f4aa98a1a0a5c34b94c75","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99e50514ae0aa10f',t:'MTc2MzEwNzY5NA=='};var a=document.createElement('script');a.src='../cdn-cgi/challenge-platform/h/b/scripts/jsd/93954b626b88/maind41d.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
       </body>
     </html>
   );
