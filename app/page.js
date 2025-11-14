@@ -9,7 +9,7 @@ export default function Home() {
           <nav className="container navbar navbar-expand-lg ">
             <div className="container-fluid">
               {/* site logo */}
-              <a className="nav-logo p-0" href="index.html"><img src="assets/images/Logo.png" alt="logo" /></a>
+              <a className="nav-logo p-0" href="index.html"><img src="/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
               {/* navigation button  */}
               <button className="navbar-toggle" onClick={() => openNav()} type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa-solid fa-bars"></i>
@@ -56,7 +56,7 @@ export default function Home() {
           <aside>
             <div id="mySidenav" className="sidenav">
               <div className="side-nav-logo d-flex justify-content-between align-items-center ps-4 pe-3">
-                <figure className="navbar-brand"><a href="index.html"><img src="assets/images/Logo.png" alt="img" className="nav-logo" /></a></figure>
+                <figure className="navbar-brand"><a href="index.html"><img src="/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" className="nav-logo" /></a></figure>
                 <div className="closebtn" onClick={() => closeNav()}><i className="fa-solid fa-square-xmark side-bar-close-btn"></i></div>
               </div>
               <ul>
@@ -104,7 +104,7 @@ export default function Home() {
           <section className="right-sidbar" id="right_side">
             <div className="d-flex justify-content-between align-items-center">
               {/* site logo */}
-              <a className="p-0 " href="index.html"><img src="assets/images/Logo.png" alt="logo" /></a>
+              <a className="p-0 " href="index.html"><img src="/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
               <button className="close_right_sidebar fa-solid fa-xmark" onClick={() => close_right_sade()}> </button>
             </div>
             <p className="mt-4 pb-3">Savage Squade is surety bond certified to provide professional credit services.
@@ -809,7 +809,7 @@ export default function Home() {
           <div className="footer-logo text-center pb-lg-4 pb-md-3 pb-sm-2 pb-4">
             {/* footer logo  */}
             <a href="index.html">
-              <figure><img src="assets/images/Logo.png" alt="img" /></figure>
+              <figure><img src="/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></figure>
             </a>
           </div>
           <ul className="d-flex align-items-center justify-content-center">
