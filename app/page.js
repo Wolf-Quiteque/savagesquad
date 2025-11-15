@@ -60,7 +60,13 @@ export default function Home() {
                 <li className="nav-item">
                   <a className="nav-link" href="pricing.html">Pricing</a>
                 </li>
-                
+                <li className="nav-item">
+                  <div className="d-flex align-items-center justify-content-between pt-3" id="slid-btn">
+                    <button className="a-slid">Pages</button>
+                    <i className="fa-solid fa-caret-down pe-4"></i>
+                  </div>
+                  
+                </li>
               </ul>
             </div>
           </aside>
