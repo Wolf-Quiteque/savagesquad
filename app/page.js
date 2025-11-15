@@ -9,7 +9,7 @@ export default function Home() {
           <nav className="container navbar navbar-expand-lg ">
             <div className="container-fluid">
               {/* site logo */}
-              <a className="nav-logo p-0" href="index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
+              <a className="nav-logo p-0" href="#'index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
               {/* navigation button  */}
               <button className="navbar-toggle" onClick={() => openNav()} type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa-solid fa-bars"></i>
@@ -18,25 +18,19 @@ export default function Home() {
               <div className="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul className="navbar-nav d-flex justify-content-center align-items-center gap-lg-2 gap-md-2 gap-sm-2 gap-2 mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <a className="nav-link active" href="index.html">Home</a>
+                    <a className="nav-link active" href="#index.html">Home</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="about.html">About us</a>
+                    <a className="nav-link" href="#about.html">About us</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="feature.html">Feature</a>
+                    <a className="nav-link" href="#feature.html">Feature</a>
                   </li>
                   <li className="dropdown">
                     <a className="nav-link " href="#">Pages <i className="fa-sharp fa-solid fa-sort-down"></i></a>
                     <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="pricing.html">Pricing</a></li>
-                      <li><a className="dropdown-item" href="contact.html">Contact</a></li>
-                      <li><a className="dropdown-item" href="team.html">Team</a></li>
-                      <li><a className="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                      <li><a className="dropdown-item" href="blogs.html">Blogs</a></li>
-                      <li><a className="dropdown-item" href="faq.html">FAQ</a></li>
-                      <li><a className="dropdown-item" href="404.html">404</a></li>
-                      <li><a className="dropdown-item" href="coming.html">Coming Soon</a></li>
+                      <li><a className="dropdown-item" href="#pricing.html">Pricing</a></li>
+                     
                     </ul>
                   </li>
                   <li className="nav-item">
@@ -56,37 +50,23 @@ export default function Home() {
           <aside>
             <div id="mySidenav" className="sidenav">
               <div className="side-nav-logo d-flex justify-content-between align-items-center ps-4 pe-3">
-                <figure className="navbar-brand"><a href="index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" className="nav-logo" /></a></figure>
+                <figure className="navbar-brand"><a href="#index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" className="nav-logo" /></a></figure>
                 <div className="closebtn" onClick={() => closeNav()}><i className="fa-solid fa-square-xmark side-bar-close-btn"></i></div>
               </div>
               <ul>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="index.html">Home</a>
+                  <a className="nav-link" aria-current="page" href="#index.html">Home</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="about.html">About</a>
+                  <a className="nav-link" href="#about.html">About</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="feature.html">Feature</a>
+                  <a className="nav-link" href="#feature.html">Feature</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="pricing.html">Pricing</a>
+                  <a className="nav-link" href="#pricing.html">Pricing</a>
                 </li>
-                <li className="nav-item">
-                  <div className="d-flex align-items-center justify-content-between pt-3" id="slid-btn">
-                    <button className="a-slid">Pages</button>
-                    <i className="fa-solid fa-caret-down pe-4"></i>
-                  </div>
-                  <ul id="slid-drop" className="myst">
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="blogs.html">Blogs</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="404.html">404</a></li>
-                    <li><a href="coming.html">Coming Soon</a></li>
-                  </ul>
-                </li>
+              
               </ul>
             </div>
           </aside>
@@ -808,7 +788,7 @@ export default function Home() {
           </form>
           <div className="footer-logo text-center pb-lg-4 pb-md-3 pb-sm-2 pb-4">
             {/* footer logo  */}
-            <a href="index.html">
+            <a href="#index.html">
               <figure><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></figure>
             </a>
           </div>
