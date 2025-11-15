@@ -26,19 +26,7 @@ export default function Home() {
                   <li className="nav-item">
                     <a className="nav-link" href="#feature.html">Feature</a>
                   </li>
-                  <li className="dropdown">
-                    <a className="nav-link " href="#">Pages <i className="fa-sharp fa-solid fa-sort-down"></i></a>
-                    <ul className="dropdown-menu">
-                      <li><a className="dropdown-item" href="#pricing.html">Pricing</a></li>
-                      <li><a className="dropdown-item" href="contact.html">Contact</a></li>
-                      <li><a className="dropdown-item" href="team.html">Team</a></li>
-                      <li><a className="dropdown-item" href="testimonials.html">Testimonials</a></li>
-                      <li><a className="dropdown-item" href="blogs.html">Blogs</a></li>
-                      <li><a className="dropdown-item" href="faq.html">FAQ</a></li>
-                      <li><a className="dropdown-item" href="404.html">404</a></li>
-                      <li><a className="dropdown-item" href="coming.html">Coming Soon</a></li>
-                    </ul>
-                  </li>
+                
                   <li className="nav-item">
                     <a id="search-bar-bt" className="nav-link" href="#"><i className="fa-solid fa-magnifying-glass"></i></a>
                   </li>
