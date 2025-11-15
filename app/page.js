@@ -60,21 +60,7 @@ export default function Home() {
                 <li className="nav-item">
                   <a className="nav-link" href="pricing.html">Pricing</a>
                 </li>
-                <li className="nav-item">
-                  <div className="d-flex align-items-center justify-content-between pt-3" id="slid-btn">
-                    <button className="a-slid">Pages</button>
-                    <i className="fa-solid fa-caret-down pe-4"></i>
-                  </div>
-                  <ul id="slid-drop" className="myst">
-                    <li><a href="#contact.html">Contact</a></li>
-                    <li><a href="#team.html">Team</a></li>
-                    <li><a href="#testimonials.html">Testimonials</a></li>
-                    <li><a href="#blogs.html">Blogs</a></li>
-                    <li><a href="#faq.html">FAQ</a></li>
-                    <li><a href="#404.html">404</a></li>
-                    <li><a href="#coming.html">Coming Soon</a></li>
-                  </ul>
-                </li>
+                
               </ul>
             </div>
           </aside>
