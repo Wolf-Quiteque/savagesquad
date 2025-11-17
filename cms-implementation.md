@@ -129,24 +129,24 @@ Tracks site visits and views with simple counters.
 db.analytics.createIndex({ date: -1 }, { unique: true })
 ```
 
-#### 3. `admin_users` Collection
-Stores admin user credentials.
+#### 3. `admin_sessions` Collection (Optional)
+Stores active admin sessions for tracking.
 
 ```javascript
 {
   _id: ObjectId,
+  session_id: String,
   email: String,
-  password_hash: String,     // bcrypt hashed password
-  name: String,
-  role: String,              // "admin", "editor"
   created_at: Date,
-  last_login: Date
+  expires_at: Date,
+  last_activity: Date
 }
 ```
 
 **Indexes:**
 ```javascript
-db.admin_users.createIndex({ email: 1 }, { unique: true })
+db.admin_sessions.createIndex({ session_id: 1 }, { unique: true })
+db.admin_sessions.createIndex({ expires_at: 1 }, { expireAfterSeconds: 0 })
 ```
 
 ---
@@ -163,11 +163,11 @@ db.admin_users.createIndex({ email: 1 }, { unique: true })
 - [ ] 1.5 Set up database models (Mongoose schemas)
 
 #### Phase 2: Authentication System
-- [ ] 2.1 Install and configure NextAuth.js
+- [ ] 2.1 Create simple auth utility functions
 - [ ] 2.2 Create admin login page (`/admin/login`)
 - [ ] 2.3 Implement authentication API routes
 - [ ] 2.4 Add middleware for protected routes
-- [ ] 2.5 Create initial admin user seeder script
+- [ ] 2.5 Set up admin credentials in .env
 
 #### Phase 3: Analytics System
 - [ ] 3.1 Create analytics tracking middleware
@@ -266,13 +266,12 @@ db.admin_users.createIndex({ email: 1 }, { unique: true })
 ```bash
 npm install mongodb mongoose
 npm install @aws-sdk/client-s3
-npm install next-auth bcryptjs
 npm install react-quill quill
 npm install sharp
 npm install date-fns
 npm install react-dropzone
 npm install recharts
-npm install crypto-js
+npm install cookie js-cookie
 ```
 
 #### 1.2 Create Environment Variables
@@ -290,13 +289,10 @@ R2_SECRET_ACCESS_KEY=your_secret_key
 R2_BUCKET_NAME=savage-squad-images
 R2_PUBLIC_URL=https://your-r2-domain.com
 
-# NextAuth
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=generate_random_secret_here
-
-# Admin
+# Admin Login Credentials (Simple Auth)
 ADMIN_EMAIL=admin@savagesquad.com
-ADMIN_PASSWORD=change_this_password
+ADMIN_PASSWORD=YourSecurePassword123
+SESSION_SECRET=random_secret_key_for_cookies
 ```
 
 #### 1.3 Set Up MongoDB Connection
@@ -426,122 +422,236 @@ const AnalyticsSchema = new mongoose.Schema({
 export default mongoose.models.Analytics || mongoose.model('Analytics', AnalyticsSchema);
 ```
 
-Create `models/AdminUser.js`:
+Create `models/AdminSession.js` (Optional - for session tracking):
 
 ```javascript
 import mongoose from 'mongoose';
 
-const AdminUserSchema = new mongoose.Schema({
-  email: {
+const AdminSessionSchema = new mongoose.Schema({
+  session_id: {
     type: String,
     required: true,
     unique: true,
     index: true,
   },
-  password_hash: {
+  email: {
     type: String,
     required: true,
-  },
-  name: String,
-  role: {
-    type: String,
-    enum: ['admin', 'editor'],
-    default: 'editor',
   },
   created_at: {
     type: Date,
     default: Date.now,
   },
-  last_login: Date,
+  expires_at: {
+    type: Date,
+    required: true,
+    index: true,
+  },
+  last_activity: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-export default mongoose.models.AdminUser || mongoose.model('AdminUser', AdminUserSchema);
+export default mongoose.models.AdminSession || mongoose.model('AdminSession', AdminSessionSchema);
 ```
 
 ---
 
 ### Phase 2: Authentication System
 
-#### 2.1 Configure NextAuth
+#### 2.1 Create Auth Utility Functions
 
-Create `app/api/auth/[...nextauth]/route.js`:
+Create `lib/auth.js`:
 
 ```javascript
-import NextAuth from 'next-auth';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import bcrypt from 'bcryptjs';
-import connectDB from '@/lib/mongodb';
-import AdminUser from '@/models/AdminUser';
+import { serialize, parse } from 'cookie';
+import crypto from 'crypto';
 
-const handler = NextAuth({
-  providers: [
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials) {
-        await connectDB();
+const SESSION_NAME = 'admin_session';
+const SESSION_SECRET = process.env.SESSION_SECRET || 'default_secret_change_this';
 
-        const user = await AdminUser.findOne({ email: credentials.email });
+// Verify admin credentials
+export function verifyCredentials(email, password) {
+  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminPassword = process.env.ADMIN_PASSWORD;
 
-        if (!user) {
-          throw new Error('No user found');
-        }
+  return email === adminEmail && password === adminPassword;
+}
 
-        const isValid = await bcrypt.compare(credentials.password, user.password_hash);
+// Generate session token
+export function generateSessionToken() {
+  return crypto.randomBytes(32).toString('hex');
+}
 
-        if (!isValid) {
-          throw new Error('Invalid password');
-        }
+// Create session cookie
+export function createSessionCookie(sessionToken) {
+  return serialize(SESSION_NAME, sessionToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 60 * 60 * 24 * 7, // 7 days
+    path: '/',
+  });
+}
 
-        // Update last login
-        user.last_login = new Date();
-        await user.save();
+// Get session from cookies
+export function getSessionFromCookie(cookieHeader) {
+  if (!cookieHeader) return null;
 
-        return {
-          id: user._id.toString(),
-          email: user.email,
-          name: user.name,
-          role: user.role,
-        };
-      }
-    })
-  ],
-  pages: {
-    signIn: '/admin/login',
-  },
-  session: {
-    strategy: 'jwt',
-  },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.role = user.role;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user) {
-        session.user.role = token.role;
-      }
-      return session;
-    },
-  },
-});
+  const cookies = parse(cookieHeader);
+  return cookies[SESSION_NAME] || null;
+}
 
-export { handler as GET, handler as POST };
+// Clear session cookie
+export function clearSessionCookie() {
+  return serialize(SESSION_NAME, '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 0,
+    path: '/',
+  });
+}
+
+// Verify session (you can optionally store sessions in MongoDB)
+export async function verifySession(sessionToken) {
+  if (!sessionToken) return false;
+
+  // For simple implementation, just check if token exists
+  // In production, you might want to store sessions in MongoDB
+  return sessionToken.length === 64; // Valid token format
+}
+
+// Get admin email from env
+export function getAdminEmail() {
+  return process.env.ADMIN_EMAIL || 'admin@savagesquad.com';
+}
 ```
 
-#### 2.2 Create Admin Login Page
+#### 2.2 Create Login API Route
+
+Create `app/api/auth/login/route.js`:
+
+```javascript
+import { NextResponse } from 'next/server';
+import { verifyCredentials, generateSessionToken, createSessionCookie } from '@/lib/auth';
+
+export async function POST(request) {
+  try {
+    const { email, password } = await request.json();
+
+    // Verify credentials against environment variables
+    if (!verifyCredentials(email, password)) {
+      return NextResponse.json(
+        { error: 'Invalid credentials' },
+        { status: 401 }
+      );
+    }
+
+    // Generate session token
+    const sessionToken = generateSessionToken();
+
+    // Create response with session cookie
+    const response = NextResponse.json({
+      success: true,
+      user: { email }
+    });
+
+    response.headers.set('Set-Cookie', createSessionCookie(sessionToken));
+
+    return response;
+  } catch (error) {
+    console.error('Login error:', error);
+    return NextResponse.json(
+      { error: 'Login failed' },
+      { status: 500 }
+    );
+  }
+}
+```
+
+#### 2.3 Create Logout API Route
+
+Create `app/api/auth/logout/route.js`:
+
+```javascript
+import { NextResponse } from 'next/server';
+import { clearSessionCookie } from '@/lib/auth';
+
+export async function POST() {
+  const response = NextResponse.json({ success: true });
+  response.headers.set('Set-Cookie', clearSessionCookie());
+  return response;
+}
+```
+
+#### 2.4 Create Session Verification API
+
+Create `app/api/auth/session/route.js`:
+
+```javascript
+import { NextResponse } from 'next/server';
+import { getSessionFromCookie, verifySession, getAdminEmail } from '@/lib/auth';
+
+export async function GET(request) {
+  try {
+    const cookieHeader = request.headers.get('cookie');
+    const sessionToken = getSessionFromCookie(cookieHeader);
+
+    const isValid = await verifySession(sessionToken);
+
+    if (!isValid) {
+      return NextResponse.json({ authenticated: false }, { status: 401 });
+    }
+
+    return NextResponse.json({
+      authenticated: true,
+      user: { email: getAdminEmail() }
+    });
+  } catch (error) {
+    return NextResponse.json({ authenticated: false }, { status: 401 });
+  }
+}
+```
+
+#### 2.5 Create Middleware for Protected Routes
+
+Create `middleware.js` in the root directory:
+
+```javascript
+import { NextResponse } from 'next/server';
+import { getSessionFromCookie, verifySession } from './lib/auth';
+
+export async function middleware(request) {
+  const { pathname } = request.nextUrl;
+
+  // Protect admin routes (except login)
+  if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
+    const cookieHeader = request.headers.get('cookie');
+    const sessionToken = getSessionFromCookie(cookieHeader);
+    const isValid = await verifySession(sessionToken);
+
+    if (!isValid) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  matcher: '/admin/:path*',
+};
+```
+
+#### 2.6 Create Admin Login Page
 
 Create `app/admin/login/page.js`:
 
 ```javascript
 'use client';
 
-import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -549,34 +659,54 @@ export default function AdminLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
 
-    const result = await signIn('credentials', {
-      redirect: false,
-      email,
-      password,
-    });
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (result.error) {
-      setError('Invalid credentials');
-    } else {
-      router.push('/admin');
+      const data = await response.json();
+
+      if (response.ok) {
+        // Redirect to admin dashboard
+        router.push('/admin');
+      } else {
+        setError(data.error || 'Invalid credentials');
+      }
+    } catch (error) {
+      setError('Login failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center">Admin Login</h1>
+        <div className="text-center mb-6">
+          <img
+            src="/assets/images/logo2.png"
+            alt="Savage Squad Logo"
+            className="h-20 mx-auto mb-4"
+          />
+          <h1 className="text-2xl font-bold">Admin Login</h1>
+        </div>
+
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             {error}
           </div>
         )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Email</label>
@@ -586,8 +716,10 @@ export default function AdminLogin() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              disabled={loading}
             />
           </div>
+
           <div className="mb-6">
             <label className="block text-gray-700 mb-2">Password</label>
             <input
@@ -596,13 +728,16 @@ export default function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+              disabled={loading}
             />
           </div>
+
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+            disabled={loading}
           >
-            Login
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
@@ -611,62 +746,67 @@ export default function AdminLogin() {
 }
 ```
 
-#### 2.3 Create Admin Seeder Script
+#### 2.7 Create Auth Context (Optional - for client-side auth state)
 
-Create `scripts/seed-admin.js`:
+Create `contexts/AuthContext.js`:
 
 ```javascript
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
-require('dotenv').config({ path: '.env.local' });
+'use client';
 
-const AdminUserSchema = new mongoose.Schema({
-  email: String,
-  password_hash: String,
-  name: String,
-  role: String,
-  created_at: Date,
-});
+import { createContext, useContext, useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-const AdminUser = mongoose.models.AdminUser || mongoose.model('AdminUser', AdminUserSchema);
+const AuthContext = createContext();
 
-async function seedAdmin() {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI);
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'admin123', 10);
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-    const admin = await AdminUser.findOneAndUpdate(
-      { email: process.env.ADMIN_EMAIL || 'admin@savagesquad.com' },
-      {
-        email: process.env.ADMIN_EMAIL || 'admin@savagesquad.com',
-        password_hash: hashedPassword,
-        name: 'Admin',
-        role: 'admin',
-        created_at: new Date(),
-      },
-      { upsert: true, new: true }
-    );
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('/api/auth/session');
+      const data = await response.json();
 
-    console.log('✅ Admin user created:', admin.email);
+      if (data.authenticated) {
+        setUser(data.user);
+      } else {
+        setUser(null);
+      }
+    } catch (error) {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    await mongoose.disconnect();
-  } catch (error) {
-    console.error('❌ Error seeding admin:', error);
-    process.exit(1);
-  }
+  const logout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      setUser(null);
+      router.push('/admin/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, loading, logout, checkAuth }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
-seedAdmin();
-```
-
-Add to `package.json`:
-
-```json
-{
-  "scripts": {
-    "seed:admin": "node scripts/seed-admin.js"
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within AuthProvider');
   }
+  return context;
 }
 ```
 
@@ -750,9 +890,12 @@ import Analytics from '@/models/Analytics';
 
 export async function GET(request) {
   try {
-    // Check authentication
-    const session = await getServerSession();
-    if (!session) {
+    // Verify session
+    const cookieHeader = request.headers.get('cookie');
+    const sessionToken = getSessionFromCookie(cookieHeader);
+    const isValid = await verifySession(sessionToken);
+
+    if (!isValid) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -954,8 +1097,12 @@ import { uploadToR2 } from '@/lib/r2';
 
 export async function POST(request) {
   try {
-    const session = await getServerSession();
-    if (!session) {
+    // Verify session
+    const cookieHeader = request.headers.get('cookie');
+    const sessionToken = getSessionFromCookie(cookieHeader);
+    const isValid = await verifySession(sessionToken);
+
+    if (!isValid) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -1008,25 +1155,29 @@ Create `app/admin/layout.js`:
 ```javascript
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function AdminLayout({ children }) {
-  const { data: session, status } = useSession();
+  const { user, loading, logout } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    if (!loading && !user) {
       router.push('/admin/login');
     }
-  }, [status, router]);
+  }, [user, loading, router]);
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
   }
 
-  if (!session) {
+  if (!user) {
     return null;
   }
 
@@ -1034,11 +1185,26 @@ export default function AdminLayout({ children }) {
     <div className="min-h-screen bg-gray-100">
       <nav className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">Savage Squad CMS</h1>
-          <div className="flex gap-4">
-            <a href="/admin" className="text-blue-600 hover:underline">Dashboard</a>
-            <a href="/admin/editor" className="text-blue-600 hover:underline">Editor</a>
-            <button onClick={() => signOut()} className="text-red-600 hover:underline">
+          <div className="flex items-center gap-4">
+            <img
+              src="/assets/images/logo2.png"
+              alt="Logo"
+              className="h-12"
+            />
+            <h1 className="text-xl font-bold">Savage Squad CMS</h1>
+          </div>
+          <div className="flex gap-6 items-center">
+            <a href="/admin" className="text-blue-600 hover:underline">
+              Dashboard
+            </a>
+            <a href="/admin/editor" className="text-blue-600 hover:underline">
+              Editor
+            </a>
+            <span className="text-gray-600">{user.email}</span>
+            <button
+              onClick={logout}
+              className="text-red-600 hover:underline"
+            >
               Logout
             </button>
           </div>
@@ -1049,6 +1215,16 @@ export default function AdminLayout({ children }) {
       </main>
     </div>
   );
+}
+```
+
+Update `app/admin/login/layout.js` to wrap with AuthProvider:
+
+```javascript
+import { AuthProvider } from '@/contexts/AuthContext';
+
+export default function RootAdminLayout({ children }) {
+  return <AuthProvider>{children}</AuthProvider>;
 }
 ```
 
@@ -1587,13 +1763,15 @@ export default function EditableImage({ sectionId, defaultSrc, alt, className, .
    R2_ACCOUNT_ID=production_r2_account
    R2_ACCESS_KEY_ID=production_key
    R2_SECRET_ACCESS_KEY=production_secret
-   NEXTAUTH_SECRET=random_production_secret
+   ADMIN_EMAIL=your_admin_email
+   ADMIN_PASSWORD=your_secure_password
+   SESSION_SECRET=random_production_secret
    ```
 
-2. **Database Migration**
+2. **Database Setup**
    ```bash
-   npm run seed:admin
-   # Run any other migration scripts
+   # No seeding needed - credentials are in .env
+   # Just ensure MongoDB is connected
    ```
 
 3. **Build Application**

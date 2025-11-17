@@ -9,7 +9,7 @@ export default function Home() {
           <nav className="container navbar navbar-expand-lg ">
             <div className="container-fluid">
               {/* site logo */}
-              <a className="nav-logo p-0" href="#'index.html"><img src="assets/images/logo2.png" style={{height:"80px",width:"auto"}} alt="Savage Squade Logo" /></a>
+              <a className="nav-logo p-0" href="#'index.html"><img src="/assets/images/logo2.png" style={{height:"80px",width:"auto"}} alt="Savage Squade Logo" /></a>
               {/* navigation button  */}
               <button className="navbar-toggle" onClick={() => openNav()} type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa-solid fa-bars"></i>
@@ -51,7 +51,7 @@ export default function Home() {
           <aside>
             <div id="mySidenav" className="sidenav">
               <div className="side-nav-logo d-flex justify-content-between align-items-center ps-4 pe-3">
-                <figure className="navbar-brand"><a href="#index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" className="nav-logo" /></a></figure>
+                <figure className="navbar-brand"><a href="#index.html"><img src="/assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" className="nav-logo" /></a></figure>
                 <div className="closebtn" onClick={() => closeNav()}><i className="fa-solid fa-square-xmark side-bar-close-btn"></i></div>
               </div>
               <ul>
@@ -116,7 +116,7 @@ export default function Home() {
           <section className="right-sidbar" id="right_side">
             <div className="d-flex justify-content-between align-items-center">
               {/* site logo */}
-              <a className="p-0 " href="index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
+              <a className="p-0 " href="index.html"><img src="/assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
               <button className="close_right_sidebar fa-solid fa-xmark" onClick={() => close_right_sade()}> </button>
             </div>
             <p className="mt-4 pb-3">Savage Squade is surety bond certified to provide professional credit services.
@@ -158,9 +158,9 @@ export default function Home() {
                 <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Schedule Free Consultation</a>
               </div>
               <div data-aos="fade-down" className="col-md-6 position-relative d-flex flex-column justify-content-center align-items-center mt-md-0 mt-sm-5 mt-4">
-                <img src="assets/images/index/hero23.png" alt="hero_img1" className="moving" />
-                <img src="assets/images/index/hero_watch.png" alt="hero_img2" />
-                <img src="assets/images/icon/hero_star.png" alt="hero_icon" />
+                <img src="/assets/images/index/hero23.png" alt="hero_img1" className="moving" />
+                <img src="/assets/images/index/hero_watch.png" alt="hero_img2" />
+                <img src="/assets/images/icon/hero_star.png" alt="hero_icon" />
               </div>
             </div>
           </div>
@@ -208,8 +208,8 @@ export default function Home() {
                   </div>
                   <div className="d-flex mb-3 mt-4 gap-4 justify-content-md-start justify-content-ms-center justify-content-center">
                     <div className="position-relative">
-                      <img src="assets/images/index/about_card_img1.svg" alt="about_img1" />
-                      <img src="assets/images/index/about_card_img2.svg" alt="about_img2" />
+                      <img src="/assets/images/index/about_card_img1.svg" alt="about_img1" />
+                      <img src="/assets/images/index/about_card_img2.svg" alt="about_img2" />
                     </div>
                     <div className="ps-2">
                       <span>
@@ -239,7 +239,7 @@ export default function Home() {
           <div className="finanes-card row gap-md-0 gap-sm-4 gap-4">
             <div className="col-lg-4 col-md-4 d-flex justify-content-center pe-lg-3 pe-md-0 pe-sm-3 pe-3">
               <div className="fin-card" data-aos="flip-up">
-                <figure><img src="assets/images/icon/graphe.png" alt="praph" /></figure>
+                <figure><img src="/assets/images/icon/graphe.png" alt="praph" /></figure>
                 <h4>Credit Analysis</h4>
                 <p className="p-f-s">Comprehensive credit report review and accurate analysis to identify opportunities for improvement.
                 </p>
@@ -247,7 +247,7 @@ export default function Home() {
             </div>
             <div className="col-lg-4 col-md-4 d-flex justify-content-center pe-lg-3 pe-md-0 pe-sm-3 pe-3">
               <div className="fin-card" data-aos="flip-up">
-                <figure> <img src="assets/images/icon/doller.png" alt="doller" /></figure>
+                <figure> <img src="/assets/images/icon/doller.png" alt="doller" /></figure>
                 <h4>Free Consultation</h4>
                 <p className="p-f-s">Schedule your free consultation and learn how we can help you achieve your credit goals.
                 </p>
@@ -255,7 +255,7 @@ export default function Home() {
             </div>
             <div className="col-lg-4 col-md-4 d-flex justify-content-center">
               <div className="fin-card" data-aos="flip-up">
-                <figure><img src="assets/images/icon/arow.png" alt="arow" /></figure>
+                <figure><img src="/assets/images/icon/arow.png" alt="arow" /></figure>
                 <h4>Expert Guidance</h4>
                 <p className="p-f-s">Personalized education and support throughout your entire credit journey.
                 </p>
@@ -265,41 +265,39 @@ export default function Home() {
         </div>
       </section>
       {/* ======== End of 1.4. finance section ========  */}
-      {/* ======== 1.5. ispsum section ======== 
+        {/* ======== 1.5. ispsum section ======== 
       <div className="ispsum-logo">
         <div className="container">
           <div className="logo_ispsum_slider">
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-1.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-1.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-2.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-2.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ispum-3.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ispum-3.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-4.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-4.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-1.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-1.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-2.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-2.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ispum-3.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ispum-3.png" alt="img" /></figure>
             </a>
             <a href="#">
-              <figure><img src="assets/images/icon/ipsum-4.png" alt="img" /></figure>
+              <figure><img src="/assets/images/icon/ipsum-4.png" alt="img" /></figure>
             </a>
           </div>
           <hr />
         </div>
       </div>
- */}
-
-          <hr />
+ */}          <hr />
 
       {/* ======== End of 1.5. ispsum section ========  */}
       {/* ======== 1.6. gateway section ========  */}
@@ -308,7 +306,7 @@ export default function Home() {
           <div className="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
             <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up">
               <div className=" gateway-bg-img mt-5 ">
-                <figure><img src="assets/images/index/gateway-2.png" alt="gate_img1" className="moving" /></figure>
+                <figure><img src="/assets/images/index/gateway-2.png" alt="gate_img1" className="moving" /></figure>
               </div>
             </div>
             <div className="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
@@ -317,7 +315,7 @@ export default function Home() {
                 Our straightforward process ensures you receive the best credit services with complete transparency
                 and professional guidance every step of the way.</p>
               <div className="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/icon/gate-icon1.png" alt="gate-img1" /></figure>
+                <figure className="d-flex align-items-center"><img src="/assets/images/icon/gate-icon1.png" alt="gate-img1" /></figure>
                 <div className="ms-lg-3 ms-md-3 ms-sm-0 ms-0">
                   <h5 className="pb-2">Schedule Free Consultation</h5>
                   <p className="p-f-s">Book your free consultation to discuss your credit goals and learn about our
@@ -325,7 +323,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/icon/gate-icon2.png" alt="gate-img2" /></figure>
+                <figure className="d-flex align-items-center"><img src="/assets/images/icon/gate-icon2.png" alt="gate-img2" /></figure>
                 <div className="ms-lg-3 ms-md-3 ms-sm-0 ms-0">
                   <h5 className="pb-2">Provide Credit Monitoring Access</h5>
                   <p className="p-f-s">Securely share your credit monitoring login details so we can conduct an
@@ -333,7 +331,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="gate d-flex mt-4  flex-md-row flex-sm-column flex-column align-items-center">
-                <figure className="d-flex align-items-center"><img src="assets/images/icon/gate-icon3.png" alt="gate-img3" /></figure>
+                <figure className="d-flex align-items-center"><img src="/assets/images/icon/gate-icon3.png" alt="gate-img3" /></figure>
                 <div className="ms-lg-3 ms-md-3 ms-sm-0 ms-0">
                   <h5 className="pb-2">Receive Your Credit Analysis</h5>
                   <p className="p-f-s">Get a detailed credit analysis with clear expectations and personalized
@@ -435,8 +433,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <figure><img src="assets/images/index/lady-mobile.png" alt="sevice_img2" /></figure>
-                <figure><img src="assets/images/icon/whitStar.png" alt="sevice_img3" /></figure>
+                <figure><img src="/assets/images/index/lady-mobile.png" alt="sevice_img2" /></figure>
+                <figure><img src="/assets/images/icon/whitStar.png" alt="sevice_img3" /></figure>
               </div>
             </div>
           </div>
@@ -447,7 +445,7 @@ export default function Home() {
       <section className="visa">
         <div className="container">
           <div className="visa-bg" data-aos="zoom-in">
-            <figure><img src="assets/images/index/vesa-back.png" alt="visa-img" /></figure>
+            <figure><img src="/assets/images/index/vesa-back.png" alt="visa-img" /></figure>
           </div>
           <div className="visa-contant" data-aos="fade-up">
             <div className="row">
@@ -466,11 +464,11 @@ export default function Home() {
               </div>
               <div className="col-lg-6 col-md-6">
                 <div className="visa-logo pt-2 pb-3">
-                  <figure><img src="assets/images/icon/vis-1.png" alt="vica-icon1" /> </figure>
-                  <figure><img src="assets/images/icon/ves-2.png" alt="vica-icon2" /></figure>
-                  <figure><img src="assets/images/icon/ves-3.png" alt="vica-icon3" /></figure>
-                  <figure><img src="assets/images/icon/ves-4.png" alt="vica-icon4" /></figure>
-                  <figure><img src="assets/images/icon/ves-5.png" alt="vica-icon5" /></figure>
+                  <figure><img src="/assets/images/icon/vis-1.png" alt="vica-icon1" /> </figure>
+                  <figure><img src="/assets/images/icon/ves-2.png" alt="vica-icon2" /></figure>
+                  <figure><img src="/assets/images/icon/ves-3.png" alt="vica-icon3" /></figure>
+                  <figure><img src="/assets/images/icon/ves-4.png" alt="vica-icon4" /></figure>
+                  <figure><img src="/assets/images/icon/ves-5.png" alt="vica-icon5" /></figure>
                 </div>
                 <div className="d-flex pt-2 justify-content-md-start justify-content-center justify-content-center">
                   <h2 className="count">3</h2>
@@ -503,8 +501,8 @@ export default function Home() {
           <div className="row ">
             <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center pricing-bg" data-aos="fade-up">
               <div>
-                <figure><img src="assets/images/index/pricinge.png" alt="pric-img1" className="moving" /></figure>
-                <figure><img src="assets/images/icon/hero_star.png" alt="pric-img2" /></figure>
+                <figure><img src="/assets/images/index/pricinge.png" alt="pric-img1" className="moving" /></figure>
+                <figure><img src="/assets/images/icon/hero_star.png" alt="pric-img2" /></figure>
               </div>
             </div>
             <div className="col-lg-6 col-md-6 mt-md-0 mt-sm-5 mt-5" data-aos="fade-down">
@@ -563,10 +561,10 @@ export default function Home() {
               <div className="prof-slide position-relative">
                 <div>
                   <div className="d-flex  align-items-center justify-content-center">
-                    <img src="assets/images/slider/profational2.png" alt="img" className="prof-img-2" />
+                    <img src="/assets/images/slider/profational2.png" alt="img" className="prof-img-2" />
                   </div>
                   <div>
-                    <img src="assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
+                    <img src="/assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
                   </div>
                   <p className="text-center p-f-s">Savage Squade helped me understand my credit report and provided
                     clear guidance on improving my credit. Their professional service and transparent process made
@@ -587,10 +585,10 @@ export default function Home() {
               <div className="prof-slide position-relative">
                 <div>
                   <div className="d-flex  align-items-center justify-content-center">
-                    <img src="assets/images/slider/profactional3.png" alt="img" className="prof-img-2" />
+                    <img src="/assets/images/slider/profactional3.png" alt="img" className="prof-img-2" />
                   </div>
                   <div>
-                    <img src="assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
+                    <img src="/assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
                   </div>
                   <p className="text-center p-f-s">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Enim
@@ -614,10 +612,10 @@ export default function Home() {
               <div className="prof-slide position-relative">
                 <div>
                   <div className="d-flex  align-items-center justify-content-center">
-                    <img src="assets/images/slider/profacitional.png" alt="img" className="prof-img-2" />
+                    <img src="/assets/images/slider/profacitional.png" alt="img" className="prof-img-2" />
                   </div>
                   <div>
-                    <img src="assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
+                    <img src="/assets/images/slider/Comma.png" alt="img" className="prof-img-1" />
                   </div>
                   <p className="text-center p-f-s">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Enim
@@ -795,7 +793,7 @@ export default function Home() {
           <div className="footer-logo text-center pb-lg-4 pb-md-3 pb-sm-2 pb-4">
             {/* footer logo  */}
             <a href="#index.html">
-              <figure><img src="assets/images/logo2.png" style={{height:"100px",width:"auto"}} alt="Savage Squade Logo" /></figure>
+              <figure><img src="/assets/images/logo2.png" style={{height:"100px",width:"auto"}} alt="Savage Squade Logo" /></figure>
             </a>
           </div>
           <ul className="d-flex align-items-center justify-content-center">
