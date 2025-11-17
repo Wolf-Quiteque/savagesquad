@@ -1,5 +1,6 @@
 import BackToTopButton from './components/BackToTopButton';
 import ScriptLoader from './components/ScriptLoader';
+import AnalyticsTracker from './components/AnalyticsTracker';
 
 export const metadata = {
   title: "Savage Squade | Surety Bond Certified Credit Services & Analysis",
@@ -164,6 +165,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <AnalyticsTracker />
         {children}
 
         {/* button back to top */}

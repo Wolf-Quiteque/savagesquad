@@ -2,15 +2,29 @@
   "name": "savagesquade",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "seed": "node scripts/seedContent.js"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.932.0",
+    "cookie": "^1.0.2",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "js-cookie": "^3.0.5",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.19.4",
     "next": "16.0.3",
+    "quill": "^2.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-dropzone": "^14.3.8",
+    "react-quill": "^2.0.0",
+    "recharts": "^3.4.1",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "1.0.0"

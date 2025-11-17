@@ -85,7 +85,7 @@ export default function Home() {
                   <hr />
               <h5 className="mt-4 mb-3" style={{ color: "white", fontWeight: "600", paddingLeft: "15px" }}>Download Our Mobile App</h5>
               <p className="p-f-s" style={{ color: "white", fontWeight: "500", paddingLeft: "15px" }}>Access your account on the go with our iOS and Android apps. Download now for 24/7 access to your credit analysis and personalized recommendations.</p>
-              <div className="row" style={{marginTop:'-20px'}}>
+              <div className="row" >
                 <div className="col-5" style={{ paddingR: "2px" }}>
                   <a href="https://play.google.com/store/apps/details?id=app.mobilecro" target="_blank" rel="noopener noreferrer">
                     <img src="/assets/images/index/playstore.png" alt="Google Play Store" style={{ height: "50px", width: "auto", display: "block" }} />
