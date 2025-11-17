@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: "Savage Squade | Professional Credit Services",
     description: "Empower your credit journey with surety bond certified credit services. Schedule your free consultation today!",
-    url: "https://savagecreditservice.com",
+    url: "https://savagesquad.vercel.app/",
     type: "website",
     locale: "en_US",
     images: [
@@ -40,7 +40,7 @@ export const metadata = {
 
   // Alternate Links for Internationalization
   alternates: {
-    canonical: "https://savagecreditservice.com",
+    canonical: "https://savagesquad.vercel.app/",
   },
 
   // Icons
@@ -59,9 +59,9 @@ export default function RootLayout({ children }) {
     "@type": "Organization",
     name: "Savage Squade",
     description: "Professional surety bond certified credit services provider",
-    url: "https://savagecreditservice.com",
-    logo: "https://savagecreditservice.com/assets/images/logo.png",
-    image: "https://savagecreditservice.com/assets/images/og-image.jpg",
+    url: "https://savagesquad.vercel.app/",
+    logo: "https://savagesquad.vercel.app//assets/images/logo.png",
+    image: "https://savagesquad.vercel.app//assets/images/og-image.jpg",
     sameAs: [
       "https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/",
       "https://www.instagram.com/savagecreditservices/?hl=en",
@@ -94,10 +94,10 @@ export default function RootLayout({ children }) {
     "@type": "LocalBusiness",
     name: "Savage Squade",
     description: "Surety Bond Certified Credit Services",
-    url: "https://savagecreditservice.com",
+    url: "https://savagesquad.vercel.app/",
     telephone: "+1-866-753-4963",
     email: "Credit@savagesquad.com",
-    image: "https://savagecreditservice.com/assets/images/logo2.png",
+    image: "https://savagesquad.vercel.app//assets/images/logo2.png",
     priceRange: "$",
     areaServed: {
       "@type": "Country",
@@ -129,8 +129,8 @@ export default function RootLayout({ children }) {
         <meta property="og:title" content="Savage Squade | Professional Credit Services" />
         <meta property="og:description" content="Empower your credit journey with surety bond certified credit services. Schedule your free consultation today!" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://savagecreditservice.com" />
-        <meta property="og:image" content="https://savagecreditservice.com/assets/images/og-image.jpg" />
+        <meta property="og:url" content="https://savagesquad.vercel.app/" />
+        <meta property="og:image" content="https://savagesquad.vercel.app//assets/images/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:locale" content="en_US" />
@@ -139,12 +139,12 @@ export default function RootLayout({ children }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Savage Squade | Professional Credit Services" />
         <meta name="twitter:description" content="Expert credit analysis and personalized solutions. Surety bond certified. Free consultation available." />
-        <meta name="twitter:image" content="https://savagecreditservice.com/assets/images/twitter-image.jpg" />
+        <meta name="twitter:image" content="https://savagesquad.vercel.app//assets/images/twitter-image.jpg" />
         <meta name="twitter:creator" content="@savagesquade" />
         <meta name="twitter:site" content="@savagesquade" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://savagecreditservice.com" />
+        <link rel="canonical" href="https://savagesquad.vercel.app/" />
         
         {/* Favicon & Icons */}
         <link rel="shortcut icon" href="/assets/images/faviconnew.png" type="image/x-icon" />
