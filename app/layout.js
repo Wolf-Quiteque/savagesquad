@@ -15,7 +15,7 @@ export const metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/assets/images/og-image.jpg",
+        url: "/assets/open.png",
         width: 1200,
         height: 630,
         alt: "Savage Squade Credit Services",
@@ -28,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Savage Squade | Professional Credit Services",
     description: "Expert credit analysis and personalized solutions. Surety bond certified. Free consultation available.",
-    image: "/assets/images/twitter-image.jpg",
+    image: "/assets/open-twitter.png",
     creator: "@savagesquade",
   },
 
@@ -50,7 +50,7 @@ export const metadata = {
 
   // Additional Metadata
   manifest: "/manifest.json",
-  themeColor: "#DAA520",
+  themeColor: "#DBB46C",
 };
 
 export default function RootLayout({ children }) {
