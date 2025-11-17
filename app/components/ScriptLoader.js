@@ -5,15 +5,23 @@ import Script from 'next/script';
 
 export default function ScriptLoader() {
   useEffect(() => {
-    // Initialize AOS when it's available
-    const initAOS = () => {
-      if (typeof window !== 'undefined' && window.AOS) {
-        window.AOS.init({ once: true, duration: 1500 });
+    // Initialize AOS and other animations when available
+    const initScripts = () => {
+      if (typeof window !== 'undefined') {
+        // Initialize AOS animations
+        if (window.AOS) {
+          window.AOS.init({ once: true, duration: 1500 });
+        }
+
+        // Refresh animations on page load
+        if (window.AOS) {
+          window.AOS.refresh();
+        }
       }
     };
 
-    // Wait a bit for all scripts to load
-    const timer = setTimeout(initAOS, 100);
+    // Wait for all scripts to load
+    const timer = setTimeout(initScripts, 200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -40,6 +48,10 @@ export default function ScriptLoader() {
         src="/assets/js/waypoints.min.js"
         strategy="afterInteractive"
       />
+      <Script
+        src="/assets/js/counter.js"
+        strategy="afterInteractive"
+      />
       {/* animation from javascript */}
       <Script
         src="/assets/js/aos.js"
@@ -48,7 +60,7 @@ export default function ScriptLoader() {
       {/* main javascript - load last as it may depend on others */}
       <Script
         src="/assets/js/custom.js"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
       />
     </>
   );

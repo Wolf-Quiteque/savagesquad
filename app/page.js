@@ -9,7 +9,7 @@ export default function Home() {
           <nav className="container navbar navbar-expand-lg ">
             <div className="container-fluid">
               {/* site logo */}
-              <a className="nav-logo p-0" href="#'index.html"><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></a>
+              <a className="nav-logo p-0" href="#'index.html"><img src="assets/images/logo2.png" style={{height:"80px",width:"auto"}} alt="Savage Squade Logo" /></a>
               {/* navigation button  */}
               <button className="navbar-toggle" onClick={() => openNav()} type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i className="fa-solid fa-bars"></i>
@@ -21,13 +21,20 @@ export default function Home() {
                     <a className="nav-link active" href="index.html">Home</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#about.html">About us</a>
+                    <a className="nav-link" href="#about">About us</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#feature.html">Feature</a>
+                    <a className="nav-link" href="#faq">FAQ</a>
+                  </li>
+                    <li className="nav-item">
+                    <a className="nav-link" href="#contact">Contact</a>
+                  </li>
+
+                     <li className="nav-item">
+                    <a className="nav-link" href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer" >Sign In</a>
                   </li>
                 
-                  <li className="nav-item">
+                  <li className="nav-item" style={{display:"none"}}>
                     <a id="search-bar-bt" className="nav-link" href="#"><i className="fa-solid fa-magnifying-glass"></i></a>
                   </li>
                   <li className="nav-item header_btn ">
@@ -52,15 +59,21 @@ export default function Home() {
                   <a className="nav-link" aria-current="page" href="index.html">Home</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="about.html">About</a>
+                  <a className="nav-link" href="#about">About</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="feature.html">Feature</a>
+                  <a className="nav-link" href="#faq">FAQ</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="pricing.html">Pricing</a>
+                  <a className="nav-link" href="contact">Contact</a>
+                </li>
+                    <li className="nav-item">
+                  <a className="nav-link" href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer">Sign In</a>
                 </li>
                 <li className="nav-item">
+                  <a className="nav-link" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09" target="_blank" rel="noopener noreferrer">Sign Up</a>
+                </li>
+                <li className="nav-item" style={{display:'none'}}>
                   <div className="d-flex align-items-center justify-content-between pt-3" id="slid-btn">
                     <button className="a-slid">Pages</button>
                     <i className="fa-solid fa-caret-down pe-4"></i>
@@ -68,6 +81,25 @@ export default function Home() {
                   
                 </li>
               </ul>
+
+                  <hr />
+              <h5 className="mt-4 mb-3" style={{ color: "white", fontWeight: "600", paddingLeft: "15px" }}>Download Our Mobile App</h5>
+              <p className="p-f-s" style={{ color: "white", fontWeight: "500", paddingLeft: "15px" }}>Access your account on the go with our iOS and Android apps. Download now for 24/7 access to your credit analysis and personalized recommendations.</p>
+              <div className="row" style={{marginTop:'-20px'}}>
+                <div className="col-5" style={{ paddingR: "2px" }}>
+                  <a href="https://play.google.com/store/apps/details?id=app.mobilecro" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/images/index/playstore.png" alt="Google Play Store" style={{ height: "50px", width: "auto", display: "block" }} />
+                  </a>
+                </div>
+                <div className="col-4 " style={{ padding: "2px" }}>
+                  <a href="https://apps.apple.com/us/app/mobile-cro/id6478385367" target="_blank" rel="noopener noreferrer">
+                    <img src="/assets/images/index/appstore.png" alt="Apple App Store" style={{ height: "50px", width: "auto", display: "block" }} />
+                  </a>
+                </div>
+              </div>
+            
+
+
             </div>
           </aside>
           {/*================== navigation drop search bar================*/}
@@ -95,23 +127,21 @@ export default function Home() {
             <h5 className="mt-4 mb-4">Connected details:</h5>
             <ul className="d-flex flex-column gap-3">
               <li>
-                <a href="#"> <i className="fa-solid fa-phone"></i></a>
-                <a href="#"><span className="__cf_email__" data-cfemail="9de4f2e8eff3fcf0f8ddf8f0fcf4f1b3fef2f0">[email&#160;protected]</span></a>
+                <a href="tel:+1-866-753-4963"> <i className="fa-solid fa-phone"></i></a>
+                <a href="tel:+1-866-753-4963"><span>+1-866-753-4963</span></a>
               </li>
               <li>
-                <a href="#"><i className="fa-solid fa-envelope"></i></a>
-                <a href="#">+123-456-7890</a>
+                <a href="mailto:Credit@savagesquad.com"><i className="fa-solid fa-envelope"></i></a>
+                <a href="mailto:Credit@savagesquad.com">Credit@savagesquad.com</a>
               </li>
               <li>
-                <a href="#"><i className="fa-solid fa-clock"></i></a>
-                <a href="#">Office Hours: 8AM - 11PM Sunday -
-                  Weekend Day</a>
+                <a href="#"><i className="fa-solid fa-map-pin"></i></a>
+                <a href="#">1980 Post Oak Suite 100 Houston, TX 77056</a>
               </li>
             </ul>
             <span className="d-flex gap-4 mt-4">
-              <a href="#" className="p-0"><i className="fa-brands fa-facebook"></i></a>
-              <a href="#" className="p-0"><i className="fa-brands fa-instagram"></i></a>
-              <a href="#" className="p-0"><i className="fa-brands fa-twitter"></i></a>
+              <a href="https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/" target="_blank" rel="noopener noreferrer" className="p-0"><i className="fa-brands fa-facebook"></i></a>
+              <a href="https://www.instagram.com/savagecreditservices/?hl=en" target="_blank" rel="noopener noreferrer" className="p-0"><i className="fa-brands fa-instagram"></i></a>
             </span>
           </section>
         </header>
@@ -125,10 +155,10 @@ export default function Home() {
                 <p>Savage Squade provides surety bond certified credit services. Schedule your free consultation
                   today and discover how we can help you achieve your financial goals through expert credit analysis
                   and personalized solutions.</p>
-                <a className="btn-hover1" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Schedule Free Consultation</a>
+                <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Schedule Free Consultation</a>
               </div>
               <div data-aos="fade-down" className="col-md-6 position-relative d-flex flex-column justify-content-center align-items-center mt-md-0 mt-sm-5 mt-4">
-                <img src="assets/images/index/hero.png" alt="hero_img1" className="moving" />
+                <img src="assets/images/index/hero23.png" alt="hero_img1" className="moving" />
                 <img src="assets/images/index/hero_watch.png" alt="hero_img2" />
                 <img src="assets/images/icon/hero_star.png" alt="hero_icon" />
               </div>
@@ -147,14 +177,11 @@ export default function Home() {
                     Our mission is to educate clients on credit health, provide accurate credit analysis, and guide them
                     toward achieving their financial goals through a simple and transparent process.</p>
                   <div className="d-flex align-items-center justify-content-lg-start justify-content-md-center justify-content-center">
-                    <a className="btn-hover1" href="about.html">Learn More</a>
+                    <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Learn More</a>
                     <div className="abut-video">
-                      <a className="video-play-button" href="#">
-                        <span className="fa-solid fa-play"></span>
-                      </a>
+                     
 
                     </div>
-                    <div className="p-f-s w-v">Watch Video</div>
                   </div>
                 </div>
               </div>
@@ -165,7 +192,7 @@ export default function Home() {
                       <div className="col-md-5 col-sm-12 col-12 ">
                         <div className="d-flex justify-content-md-start justify-content-sm-center justify-content-center">
                           <h3 className="count">38</h3>
-                          <h3>M+</h3>
+                          <h3>K+</h3>
                         </div>
                         <p className="p-f-s">Clients have trusted Savage Squade with their credit journey!</p>
                       </div>
@@ -238,10 +265,9 @@ export default function Home() {
         </div>
       </section>
       {/* ======== End of 1.4. finance section ========  */}
-      {/* ======== 1.5. ispsum section ========  */}
+      {/* ======== 1.5. ispsum section ======== 
       <div className="ispsum-logo">
         <div className="container">
-          <hr />
           <div className="logo_ispsum_slider">
             <a href="#">
               <figure><img src="assets/images/icon/ipsum-1.png" alt="img" /></figure>
@@ -271,6 +297,10 @@ export default function Home() {
           <hr />
         </div>
       </div>
+ */}
+
+          <hr />
+
       {/* ======== End of 1.5. ispsum section ========  */}
       {/* ======== 1.6. gateway section ========  */}
       <section className="gateway">
@@ -278,7 +308,7 @@ export default function Home() {
           <div className="row gap-lg-0 gap-md-0 gap-sm-4 gap-4">
             <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center" data-aos="fade-up">
               <div className=" gateway-bg-img mt-5 ">
-                <figure><img src="assets/images/index/gateway-1.png" alt="gate_img1" className="moving" /></figure>
+                <figure><img src="assets/images/index/gateway-2.png" alt="gate_img1" className="moving" /></figure>
               </div>
             </div>
             <div className="col-lg-6 col-md-6  text-md-start text-sm-center text-center" data-aos="fade-down">
@@ -449,8 +479,17 @@ export default function Home() {
                 </div>
                 <p className="pt-2 pb-3 text-md-start text-sm-center text-center p-f-s">Web portal, iOS app, and Android app -
                   choose the platform that works best for you.</p>
-                <div className="visa-card position-relative mt-3">
-                  <img src="assets/images/index/Card.png" alt="visa-card" />
+                <div className="row">
+                  <div className="col-md-6 d-flex justify-content-md-start justify-content-center">
+                    <a href="https://play.google.com/store/apps/details?id=app.mobilecro" target="_blank" rel="noopener noreferrer">
+                      <img src="/assets/images/index/playstore.png" alt="Google Play Store" style={{ height: "90px", width: "auto", display: "block" }} />
+                    </a>
+                  </div>
+                  <div className="col-md-6 d-flex justify-content-md-start justify-content-center">
+                    <a href="https://apps.apple.com/us/app/mobile-cro/id6478385367" target="_blank" rel="noopener noreferrer">
+                      <img src="/assets/images/index/appstore.png" alt="Apple App Store" style={{ height: "90px", width: "auto", display: "block" }} />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -473,8 +512,8 @@ export default function Home() {
               <p className="text-md-start text-sm-center text-center p-md-0 p-sm-2 p-2">Start with a free consultation to
                 understand your credit situation. Our transparent pricing and surety bond certification ensure you receive
                 professional service with complete peace of mind.</p>
-              <div className="pric-list">
-                <h6>Free Consultation</h6>
+              <div className="pric-list" >
+                <h6 >Free Consultation</h6>
                 <div className="d-flex">
                   <div className="mt-3 me-3"><i className="fa-solid fa-check"></i></div>
 
@@ -683,127 +722,100 @@ export default function Home() {
         </div>
       </section>
       {/* ======== End of 1.11. question section ========  */}
-      {/* ======== 1.12. news-cards section ========  */}
-      <section className="news-cards">
+      <hr />
+      {/* ======== 1.12. contact section ========  */}
+      <section className="contact-section" id="contact">
         <div className="container">
-          <h2 className="text-center">CREDIT EDUCATION & RESOURCES</h2>
-          <p className="text-center news-p">Stay informed with our latest articles about credit health, financial tips,
-            and industry updates to help you on your credit journey.</p>
-          <div className="row d-flex gap-md-0 gap-sm-5 gap-4">
-            <div className="col-lg-4 col-md-4 d-flex" data-aos="flip-right">
-              <div className="card news-card-back">
-                <img src="assets/images/index/news-1.png" alt="card-img" />
-                <div className="card-body">
-                  <a href="#">
-                    <h5>Understanding Your Credit Report: A Complete Guide</h5>
-                  </a>
-                  <p className="card-text p-f-s">Learn how to read and understand your credit report, and discover what
-                    factors impact your credit score.</p>
-                </div>
-                <hr className="dotted-line" />
-                <div className="card-viewer d-flex justify-content-between ">
-                  <div>
-                    <i className="fa-solid fa-calendar-days"></i>
-                    <span>2023/06/12</span>
+          <div className="contact-hero">
+            <h2 className="text-center">CONTACT</h2>
+            <p className="text-center">Get in touch with Savage Squade for professional credit services. We&apos;re here to answer your questions and help you achieve your financial goals.</p>
+          </div>
+        </div>
+        <div className="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.4764417894684!2d-95.46347492346365!3d29.74043297532047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c0673c2d3f1d%3A0x5b8e46a5fc4c8fd!2s1980%20Post%20Oak%20Blvd%20%23100%2C%20Houston%2C%20TX%2077056%2C%20USA!5e0!3m2!1sen!2s!4v1731847200000!5m2!1sen!2s"
+            width="600"
+            height="450"
+            style={{border: 0}}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <section className="d-flex justify-content-center">
+          <div className="help position-relative">
+            <div className="container">
+              <div className="row d-flex gap-lg-5 gap-md-3 gap-sm-4 gap-3 justify-content-center">
+                <div className="col-lg-5 col-md-5 help-crd1 aos-init aos-animate" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                  <h4>HOW CAN WE HELP?</h4>
+                  <p>Whether you have questions about our credit services, need to schedule a consultation, or want to learn more about how we can help you achieve your financial goals, our team is ready to assist you.</p>
+                  <div className="d-flex gap-4 align-items-center">
+                    <i className="fa-solid fa-house"></i>
+                    <span>1980 Post Oak Suite 100 Houston, TX 77056</span>
                   </div>
-                  <div>
-                    <i className="fa-regular fa-message"></i>
-                    <span>0</span>
+                  <div className="d-flex gap-4 align-items-center">
+                    <i className="fa-solid fa-phone"></i>
+                    <span>+1-866-753-4963</span>
                   </div>
-                </div>
-                <div className="news-link">
-                  <a className="btn-hover1" href="#">Read More</a>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-4 d-flex" data-aos="flip-right">
-              <div className="card news-card-back">
-                <img src="assets/images/index/news-2.png" alt="image" />
-                <div className="card-body">
-                  <a href="#">
-                    <h5>Why Surety Bond Certification Matters for Credit Services</h5>
-                  </a>
-                  <p className="card-text p-f-s">Discover the importance of working with a surety bond certified credit
-                    service provider and how it protects you.</p>
-                </div>
-                <hr className="dotted-line" />
-                <div className="card-viewer d-flex justify-content-between ">
-                  <div>
-                    <i className="fa-solid fa-calendar-days"></i>
-                    <span>2023/06/12</span>
+                  <div className="d-flex gap-4 align-items-center">
+                    <i className="fa-solid fa-envelope"></i>
+                    <span>Credit@savagesquad.com</span>
                   </div>
-                  <div>
-                    <i className="fa-regular fa-message"></i>
-                    <span>0</span>
+                  <h5>OPERATING HOURS</h5>
+                  <div className="d-flex gap-4 align-items-center">
+                    <i className="fa-solid fa-clock"></i>
+                    <span>Monday To Friday <br /> 8:00am to 8:00pm AEDT</span>
                   </div>
                 </div>
-                <div className="card-color">
-                  <a className="btn-hover1" href="#">Read More</a>
+                <div className="col-lg-5 col-md-5 contact-email aos-init aos-animate" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+                  <h4>EMAIL US</h4>
+                  <form action="https://html-templates.evonicmedia.com/paypath/action_page.php" id="footer-sub">
+                    <div className="row justify-content-center gap-3">
+                      <input type="text" name="name" id="name" className="col-md-5 col-sm-12 col-12" placeholder="Your Name" required />
+                      <input type="email" name="email" id="email" className="col-md-5 col-sm-12 col-12" placeholder="Email Address" required />
+                      <input type="number" name="number" id="number" className="col-md-5 col-sm-12 col-12" placeholder="Phone Number" required />
+                      <input type="text" name="subject" id="subject" className="col-md-5 col-sm-12 col-12" placeholder="Subject" required />
+                      <textarea className="col-md-11 col-12" name="massage" id="massage" cols="30" rows="10" placeholder="Write here message"></textarea>
+                    </div>
+                    <div className="d-flex justify-content-center mt-4">
+                      <button className="e-btn btn-hover1" type="submit">Submit</button>
+                    </div>
+                  </form>
                 </div>
-              </div>
-            </div>
-            <div className="col-lg-4 col-md-4 d-flex" data-aos="flip-right">
-              <div className="card news-card-back">
-                <img src="assets/images/index/news-3.png" alt="image" />
-                <div className="card-body">
-                  <a href="#">
-                    <h5>Setting Realistic Credit Goals: A Roadmap to Success</h5>
-                  </a>
-                  <p className="card-text p-f-s">Learn how to set achievable credit goals and create a personalized plan
-                    for your financial future.</p>
-                </div>
-                <hr className="dotted-line" />
-                <div className="card-viewer d-flex justify-content-between ">
-                  <div>
-
-                    <i className="fa-solid fa-calendar-days"></i>
-                    <span>2023/06/12</span>
-                  </div>
-                  <div>
-                    <i className="fa-regular fa-message"></i>
-                    <span>0</span>
-                  </div>
-                </div>
-                <div>
-                  <a className="btn-hover1" href="#">Read More</a>
-                </div>
+                <div id="Succes-box"></div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
-      {/* ======== End of 1.12. news-cards section ========  */}
+      {/* ======== End of 1.12. contact section ========  */}
       {/* ======== 1.13. footer section ========  */}
       <footer className="position-relative">
         <div className="container">
-          <h4 className="text-center">SUBSCRIBE TO CREDIT TIPS & UPDATES</h4>
-          <p className="text-center pt-2 pb-3">Get the latest credit education and updates from Savage Squade</p>
-          <form className="d-flex align-items-center justify-content-center" id="footer-sub2">
-            {/* form Subscribe massage */}
-            <div id="Succes-box2"></div>
-            <div className="d-flex footer-search">
-              <input type="email" name="search" placeholder="Enter your Email" required />
-              <button type="submit" className="btn-hover1">Subscribe</button>
-            </div>
-          </form>
           <div className="footer-logo text-center pb-lg-4 pb-md-3 pb-sm-2 pb-4">
             {/* footer logo  */}
             <a href="#index.html">
-              <figure><img src="assets/images/savage squad logos_1 gold.png" alt="Savage Squade Logo" /></figure>
+              <figure><img src="assets/images/logo2.png" style={{height:"100px",width:"auto"}} alt="Savage Squade Logo" /></figure>
             </a>
           </div>
           <ul className="d-flex align-items-center justify-content-center">
             <li>
-              <a href="#">Feature</a>
+              <a href="index.html">Home</a>
             </li>
             <li>
-              <a href="#">Pricing</a>
+              <a href="#about">About us</a>
             </li>
             <li>
-              <a href="#">About us</a>
+              <a href="#faq">FAQ</a>
             </li>
             <li>
-              <a href="#">Faq</a>
+              <a href="#contact">Contact</a>
+            </li>
+            <li>
+              <a href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer">Sign In</a>
+            </li>
+            <li>
+              <a href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09" target="_blank" rel="noopener noreferrer">Sign Up</a>
             </li>
           </ul>
           <hr />
@@ -811,9 +823,8 @@ export default function Home() {
             {/* footer social icon  */}
             <div className="col-lg-3 col-md-3 d-flex align-items-center justify-content-md-start justify-content-sm-center justify-content-center">
               <div className="social-icon d-flex gap-2 justify-content-md-start justify-content-sm-center justify-content-center">
-                <a href="#"> <i className="fa-brands fa-facebook-f foot-facebook"></i></a>
-                <a href="#"> <i className="fa-brands fa-twitter"></i></a>
-                <a href="#"> <i className="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/" target="_blank" rel="noopener noreferrer"> <i className="fa-brands fa-facebook-f foot-facebook"></i></a>
+                <a href="https://www.instagram.com/savagecreditservices/?hl=en" target="_blank" rel="noopener noreferrer"> <i className="fa-brands fa-instagram"></i></a>
               </div>
             </div>
             {/* footer terms privacy  */}
@@ -824,22 +835,7 @@ export default function Home() {
               </div>
             </div>
             {/* footer logo slider  */}
-            <div className="col-lg-3 col-md-3">
-              <div className="footer_ispsum_slider">
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-228.png" alt="qr-code" /></a>
-                </figure>
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-233.png" alt="qr-code" /></a>
-                </figure>
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-229.png" alt="qr-code" /></a>
-                </figure>
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-228.png" alt="qr-code" /></a>
-                </figure>
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-233.png" alt="qr-code" /></a>
-                </figure>
-                <figure><a href="#"><img src="assets/images/icon/logoipsum-229.png" alt="qr-code" /></a>
-                </figure>
-              </div>
-            </div>
+         
           </div>
           <hr />
           <div className="Copyright d-flex justify-content-between flex-wrap dir">
