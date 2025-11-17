@@ -77,96 +77,108 @@ export default function ContentEditor() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100">
+      <div className="admin-container">
         <AdminNav />
-        <div className="flex items-center justify-center py-20">
-          <div className="text-xl">Loading content...</div>
+        <div className="d-flex align-items-center justify-content-center py-5">
+          <div className="h4">Loading content...</div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="admin-container">
       <AdminNav />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h2 className="text-3xl font-bold mb-2">Content Editor</h2>
-          <p className="text-gray-600">Select content below to edit. Changes are saved immediately.</p>
+      <main className="container py-4">
+        <div className="mb-4">
+          <h2 className="h2 fw-bold mb-2">Content Editor</h2>
+          <p className="text-muted">Select content below to edit. Changes are saved immediately.</p>
         </div>
 
         {successMessage && (
-          <div className="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+          <div className="alert alert-success" role="alert">
             {successMessage}
           </div>
         )}
 
         {/* Content List */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="row g-3">
           {content.length === 0 ? (
-            <div className="bg-white p-8 rounded-lg shadow text-center">
-              <p className="text-gray-500">No content available yet. Content will appear here once created.</p>
+            <div className="col-12">
+              <div className="admin-card text-center">
+                <p className="text-muted">No content available yet. Content will appear here once created.</p>
+              </div>
             </div>
           ) : (
             content.map((item) => (
-              <div
-                key={item.section_id}
-                className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition cursor-pointer"
-                onClick={() => handleEdit(item)}
-              >
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-bold text-lg">{item.metadata?.section_name || item.section_id}</h3>
-                      <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        {item.content_type}
-                      </span>
-                      {item.metadata?.page && (
-                        <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">
-                          {item.metadata.page}
+              <div key={item.section_id} className="col-12">
+                <div
+                  className="admin-card cursor-pointer"
+                  style={{cursor: 'pointer', transition: 'box-shadow 0.2s'}}
+                  onClick={() => handleEdit(item)}
+                  onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)'}
+                  onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)'}
+                >
+                  <div className="d-flex justify-content-between align-items-start">
+                    <div className="flex-grow-1">
+                      <div className="d-flex align-items-center gap-2 mb-2 flex-wrap">
+                        <h3 className="h5 fw-bold mb-0">{item.metadata?.section_name || item.section_id}</h3>
+                        <span className="badge bg-primary">
+                          {item.content_type}
                         </span>
+                        {item.metadata?.page && (
+                          <span className="badge bg-secondary">
+                            {item.metadata.page}
+                          </span>
+                        )}
+                      </div>
+
+                      {item.content_type === 'image' ? (
+                        <div className="mt-2">
+                          {item.content.url && (
+                            <img
+                              src={item.content.url}
+                              alt={item.content.alt || 'Content image'}
+                              style={{height: '128px', objectFit: 'cover', borderRadius: '4px'}}
+                            />
+                          )}
+                          <p className="small text-muted mt-2">
+                            Alt: {item.content.alt || 'No alt text'}
+                          </p>
+                        </div>
+                      ) : (
+                        <div
+                          className="text-truncate"
+                          style={{
+                            display: '-webkit-box',
+                            WebkitLineClamp: 3,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden'
+                          }}
+                          dangerouslySetInnerHTML={{
+                            __html: item.content.html || item.content.text || 'No content'
+                          }}
+                        />
+                      )}
+
+                      {item.updated_at && (
+                        <p className="small text-muted mt-2 mb-0">
+                          Last updated: {new Date(item.updated_at).toLocaleString()}
+                        </p>
                       )}
                     </div>
 
-                    {item.content_type === 'image' ? (
-                      <div className="mt-2">
-                        {item.content.url && (
-                          <img
-                            src={item.content.url}
-                            alt={item.content.alt || 'Content image'}
-                            className="h-32 object-cover rounded"
-                          />
-                        )}
-                        <p className="text-sm text-gray-600 mt-2">
-                          Alt: {item.content.alt || 'No alt text'}
-                        </p>
-                      </div>
-                    ) : (
-                      <div
-                        className="text-gray-700 line-clamp-3"
-                        dangerouslySetInnerHTML={{
-                          __html: item.content.html || item.content.text || 'No content'
-                        }}
-                      />
-                    )}
-
-                    {item.updated_at && (
-                      <p className="text-xs text-gray-400 mt-2">
-                        Last updated: {new Date(item.updated_at).toLocaleString()}
-                      </p>
-                    )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleEdit(item);
+                      }}
+                      className="btn btn-primary ms-3"
+                    >
+                      Edit
+                    </button>
                   </div>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleEdit(item);
-                    }}
-                    className="ml-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                  >
-                    Edit
-                  </button>
                 </div>
               </div>
             ))

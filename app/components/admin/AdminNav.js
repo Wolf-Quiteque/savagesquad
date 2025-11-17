@@ -16,39 +16,40 @@ export default function AdminNav() {
   };
 
   return (
-    <nav className="bg-white shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="flex items-center gap-4">
+    <nav className="navbar navbar-light bg-white shadow-sm">
+      <div className="container-fluid">
+        <div className="d-flex align-items-center">
           <img
             src="/assets/images/logo2.png"
             alt="Logo"
-            className="h-12"
+            style={{height: '48px'}}
+            className="me-3"
           />
-          <h1 className="text-xl font-bold">Savage Squad CMS</h1>
+          <h1 className="h4 mb-0 fw-bold">Savage Squad CMS</h1>
         </div>
-        <div className="flex gap-6 items-center">
+        <div className="d-flex align-items-center gap-3">
           <a
             href="/admin"
-            className={`hover:underline ${pathname === '/admin' ? 'text-blue-600 font-semibold' : 'text-gray-600'}`}
+            className={`nav-link ${pathname === '/admin' ? 'text-primary fw-semibold' : 'text-secondary'}`}
           >
             Dashboard
           </a>
           <a
             href="/admin/editor"
-            className={`hover:underline ${pathname === '/admin/editor' ? 'text-blue-600 font-semibold' : 'text-gray-600'}`}
+            className={`nav-link ${pathname === '/admin/editor' ? 'text-primary fw-semibold' : 'text-secondary'}`}
           >
             Editor
           </a>
           <a
             href="/"
             target="_blank"
-            className="text-gray-600 hover:underline"
+            className="nav-link text-secondary"
           >
-            View Site ↗
+            View Site <i className="fa fa-external-link"></i>
           </a>
           <button
             onClick={handleLogout}
-            className="text-red-600 hover:underline"
+            className="btn btn-link text-danger text-decoration-none"
           >
             Logout
           </button>

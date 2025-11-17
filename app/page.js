@@ -381,55 +381,55 @@ export default function Home() {
                 <div className="social-rating">
                   <div className="d-flex">
                     <div className="d-flex">
-                      <span><i className="fa-brands fa-youtube"></i></span>
+                      <span><i className="fa-solid fa-house"></i></span>
                       <div>
-                        <h6>Youtube Premium</h6>
-                        <p>9 June 2023</p>
+                        <h6>Rent Payment</h6>
+                        <p>1 June 2023</p>
                       </div>
                     </div>
                     <div className="d-flex text-pink">
                       <p>-$</p>
-                      <p className="count">3.00</p>
+                      <p className="count">1200.00</p>
                     </div>
                   </div>
                   <div className="d-flex">
                     <div className="d-flex">
-                      <span><i className="fa-brands fa-facebook"></i></span>
+                      <span><i className="fa-solid fa-bolt"></i></span>
                       <div>
-                        <h6>Facebook Ads</h6>
+                        <h6>Electric Bill</h6>
                         <p>5 June 2023</p>
                       </div>
                     </div>
-                    <div className="d-flex text-green">
-                      <p>+$</p>
-                      <p className="count">21.00</p>
+                    <div className="d-flex text-pink">
+                      <p>-$</p>
+                      <p className="count">85.00</p>
                     </div>
                   </div>
                   <div className="d-flex">
                     <div className="d-flex">
-                      <span><i className="fa-brands fa-pinterest-p"></i></span>
+                      <span><i className="fa-solid fa-cart-shopping"></i></span>
                       <div>
-                        <h6>Pinterest</h6>
-                        <p>2 June 2023</p>
+                        <h6>Groceries</h6>
+                        <p>10 June 2023</p>
                       </div>
                     </div>
                     <div className="d-flex text-pink">
                       <p>-$</p>
-                      <p className="count">14.00</p>
+                      <p className="count">156.00</p>
                     </div>
                   </div>
                   <div className="d-flex">
                     <div className="d-flex">
-                      <span><i className="fa-brands fa-twitter"></i></span>
+                      <span><i className="fa-solid fa-car"></i></span>
                       <div>
-                        <h6>Twitter</h6>
-                        <p>1 June 2023</p>
+                        <h6>Car Insurance</h6>
+                        <p>15 June 2023</p>
                       </div>
 
                     </div>
-                    <div className="d-flex text-green">
-                      <p>+$</p>
-                      <p className="count">51.00</p>
+                    <div className="d-flex text-pink">
+                      <p>-$</p>
+                      <p className="count">142.00</p>
                     </div>
                   </div>
                 </div>

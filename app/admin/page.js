@@ -54,52 +54,52 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-xl">Loading analytics...</div>
+      <div className="admin-container d-flex align-items-center justify-content-center">
+        <div className="h4">Loading analytics...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div className="text-xl text-red-600">{error}</div>
+      <div className="admin-container d-flex align-items-center justify-content-center">
+        <div className="h4 text-danger">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="admin-container">
       {/* Navigation */}
       <AdminNav />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-3xl font-bold">Analytics Dashboard</h2>
+      <main className="container py-4">
+        <div className="mb-4">
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <h2 className="h2 fw-bold">Analytics Dashboard</h2>
             {lastUpdated && (
-              <span className="text-sm text-gray-500">
+              <span className="text-muted small">
                 Last updated: {lastUpdated.toLocaleTimeString()}
               </span>
             )}
           </div>
-          <div className="flex gap-4 mb-6">
+          <div className="btn-group mb-4" role="group">
             <button
               onClick={() => setDays(7)}
-              className={`px-4 py-2 rounded ${days === 7 ? 'bg-blue-600 text-white' : 'bg-white'}`}
+              className={`btn ${days === 7 ? 'btn-primary' : 'btn-outline-primary'}`}
             >
               7 Days
             </button>
             <button
               onClick={() => setDays(30)}
-              className={`px-4 py-2 rounded ${days === 30 ? 'bg-blue-600 text-white' : 'bg-white'}`}
+              className={`btn ${days === 30 ? 'btn-primary' : 'btn-outline-primary'}`}
             >
               30 Days
             </button>
             <button
               onClick={() => setDays(90)}
-              className={`px-4 py-2 rounded ${days === 90 ? 'bg-blue-600 text-white' : 'bg-white'}`}
+              className={`btn ${days === 90 ? 'btn-primary' : 'btn-outline-primary'}`}
             >
               90 Days
             </button>
@@ -107,20 +107,24 @@ export default function AdminDashboard() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-gray-500 text-sm mb-2">Total Views</h3>
-            <p className="text-4xl font-bold">{analytics?.totals?.total_views || 0}</p>
+        <div className="row g-4 mb-4">
+          <div className="col-md-6">
+            <div className="stat-card">
+              <div className="stat-label mb-2">Total Views</div>
+              <div className="stat-value">{analytics?.totals?.total_views || 0}</div>
+            </div>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h3 className="text-gray-500 text-sm mb-2">Unique Visitors</h3>
-            <p className="text-4xl font-bold">{analytics?.totals?.unique_visitors || 0}</p>
+          <div className="col-md-6">
+            <div className="stat-card">
+              <div className="stat-label mb-2">Unique Visitors</div>
+              <div className="stat-value">{analytics?.totals?.unique_visitors || 0}</div>
+            </div>
           </div>
         </div>
 
         {/* Chart */}
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h3 className="text-lg font-bold mb-4">Daily Traffic</h3>
+        <div className="admin-card">
+          <h3 className="h5 fw-bold mb-4">Daily Traffic</h3>
           {analytics?.daily && analytics.daily.length > 0 ? (
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={analytics.daily}>
@@ -137,14 +141,14 @@ export default function AdminDashboard() {
               </LineChart>
             </ResponsiveContainer>
           ) : (
-            <p className="text-gray-500 text-center py-12">No analytics data available yet</p>
+            <p className="text-muted text-center py-5">No analytics data available yet</p>
           )}
         </div>
 
-        <div className="mt-8 text-center">
+        <div className="text-center mt-4">
           <a
             href="/admin/editor"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition"
+            className="btn btn-primary btn-lg"
           >
             Go to Content Editor →
           </a>
