@@ -97,7 +97,7 @@ export default function RootLayout({ children }) {
     url: "https://savagecreditservice.com",
     telephone: "+1-866-753-4963",
     email: "Credit@savagesquad.com",
-    image: "https://savagecreditservice.com/assets/images/logo.png",
+    image: "https://savagecreditservice.com/assets/images/logo2.png",
     priceRange: "$",
     areaServed: {
       "@type": "Country",
