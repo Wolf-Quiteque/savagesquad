@@ -15,7 +15,7 @@ export const metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/assets/open.png",
+        url: "https://savagesquad.vercel.app/assets/open.png",
         width: 1200,
         height: 630,
         alt: "Savage Squade Credit Services",
@@ -28,7 +28,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Savage Squade | Professional Credit Services",
     description: "Expert credit analysis and personalized solutions. Surety bond certified. Free consultation available.",
-    image: "/assets/open-twitter.png",
+    image: "https://savagesquad.vercel.app/assets/assets/open-twitter.png",
     creator: "@savagesquade",
   },
 
@@ -60,8 +60,8 @@ export default function RootLayout({ children }) {
     name: "Savage Squade",
     description: "Professional surety bond certified credit services provider",
     url: "https://savagesquad.vercel.app/",
-    logo: "https://savagesquad.vercel.app//assets/images/logo.png",
-    image: "https://savagesquad.vercel.app//assets/images/og-image.jpg",
+    logo: "https://savagesquad.vercel.app/assets/images/logo2.png",
+    image: "https://savagesquad.vercel.app/assets/open.png",
     sameAs: [
       "https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/",
       "https://www.instagram.com/savagecreditservices/?hl=en",
