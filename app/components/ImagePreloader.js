@@ -19,15 +19,15 @@ export default function ImagePreloader({ onLoadComplete }) {
     setParticles(generatedParticles);
 
     const loadImages = async () => {
-      // Wait for DOM to be fully ready and CMS content to load
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Wait longer for DOM to be fully ready and CMS/MongoDB content to load
+      await new Promise(resolve => setTimeout(resolve, 1200));
 
       // Keep polling for new images until they stabilize (CMS content loaded)
       const getImages = () => document.querySelectorAll('img:not([style*="display: none"])');
       
       let previousCount = 0;
       let stableCount = 0;
-      const maxAttempts = 25;
+      const maxAttempts = 40;
       let attempts = 0;
 
       const checkImagesStabilized = () => {
@@ -46,12 +46,12 @@ export default function ImagePreloader({ onLoadComplete }) {
             previousCount = currentCount;
             attempts++;
 
-            // Continue if stable for 3 checks or reached max attempts
-            if (stableCount >= 3 || attempts >= maxAttempts) {
+            // Continue if stable for 4 checks or reached max attempts
+            if (stableCount >= 4 || attempts >= maxAttempts) {
               clearInterval(checkStability);
               resolve(currentImages);
             }
-          }, 200);
+          }, 150);
         });
       };
 
@@ -112,7 +112,7 @@ export default function ImagePreloader({ onLoadComplete }) {
       // Wait for all images to load or timeout
       await Promise.race([
         Promise.all(imageLoadPromises),
-        new Promise(resolve => setTimeout(resolve, 12000))
+        new Promise(resolve => setTimeout(resolve, 15000))
       ]);
 
       // Ensure we complete even if some images didn't load

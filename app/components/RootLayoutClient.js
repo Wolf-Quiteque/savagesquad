@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import ImagePreloader from './ImagePreloader';
+import { useImagePreloader } from '@/hooks/useImagePreloader';
 
 export default function RootLayoutClient({ children }) {
   const [showContent, setShowContent] = useState(false);
   const [imagesReady, setImagesReady] = useState(false);
+
+  // Start background preloading immediately
+  useImagePreloader();
 
   const handleLoadingComplete = () => {
     setImagesReady(true);
@@ -21,7 +25,7 @@ export default function RootLayoutClient({ children }) {
       if (!showContent) {
         handleLoadingComplete();
       }
-    }, 15000);
+    }, 18000);
 
     return () => clearTimeout(fallbackTimer);
   }, [showContent]);
