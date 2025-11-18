@@ -1,0 +1,321 @@
+/* ========== IMAGE PRELOADER STYLES ========== */
+
+:root {
+  --ss-serene-teal: #1f4f6b;
+  --ss-muted-gold: #dbb46c;
+  --ss-midnight-slate: #001a2a;
+  --ss-antique-gold: #8e723d;
+  --ss-dusty-blue: #8b6b5b;
+  --ss-palladium: #e6e0c8;
+}
+
+.preloader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--ss-midnight-slate) 0%, #0d1117 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  animation: preloaderFadeIn 0.6s ease-out forwards;
+}
+
+.preloader-wrapper.fade-out {
+  animation: preloaderFadeOut 0.6s ease-out forwards;
+}
+
+@keyframes preloaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes preloaderFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ========== ANIMATED GRID BACKGROUND ========== */
+.preloader-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1px;
+  padding: 20px;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.grid-cell {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: gridPulse 2s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(219, 180, 108, 0.15);
+  }
+  50% {
+    background-color: rgba(31, 79, 107, 0.1);
+    border-color: rgba(219, 180, 108, 0.3);
+  }
+}
+
+/* ========== CENTER CONTENT ========== */
+.preloader-center {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ========== ANIMATED CIRCLES ========== */
+.loader-circles {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  position: absolute;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--ss-muted-gold);
+  border-right-color: var(--ss-muted-gold);
+}
+
+.circle-1 {
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+
+.circle-2 {
+  width: 60px;
+  height: 60px;
+  animation: spinReverse 2.5s linear infinite;
+  border-top-color: var(--ss-serene-teal);
+  border-right-color: var(--ss-serene-teal);
+}
+
+.circle-3 {
+  width: 40px;
+  height: 40px;
+  animation: spin 3s linear infinite;
+  border-top-color: var(--ss-antique-gold);
+  border-right-color: var(--ss-antique-gold);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* ========== BRAND TEXT ========== */
+.preloader-brand {
+  position: relative;
+  z-index: 10;
+}
+
+.preloader-brand h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--ss-muted-gold) 0%, var(--ss-serene-teal) 50%, var(--ss-antique-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  animation: textGlow 2s ease-in-out infinite;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.preloader-brand p {
+  font-size: 1rem;
+  color: var(--ss-palladium);
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(219, 180, 108, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(31, 79, 107, 0.5));
+  }
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ========== PROGRESS BAR ========== */
+.preloader-progress {
+  position: absolute;
+  bottom: 40px;
+  width: 250px;
+  height: 4px;
+  background-color: rgba(219, 180, 108, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(219, 180, 108, 0.2);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--ss-muted-gold), var(--ss-serene-teal), var(--ss-antique-gold));
+  border-radius: 2px;
+  transition: width 0.3s ease-out;
+  box-shadow: 0 0 10px rgba(219, 180, 108, 0.8);
+}
+
+.progress-text {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+  color: var(--ss-muted-gold);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  z-index: 10;
+}
+
+/* ========== FLOATING PARTICLES ========== */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: rgba(219, 180, 108, 0.6);
+  border-radius: 50%;
+  animation: floatParticles infinite ease-in-out;
+  box-shadow: 0 0 6px rgba(219, 180, 108, 0.8);
+}
+
+@keyframes floatParticles {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .preloader-brand h1 {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .preloader-brand p {
+    font-size: 0.9rem;
+  }
+
+  .loader-circles {
+    width: 80px;
+    height: 80px;
+  }
+
+  .circle-1 {
+    width: 60px;
+    height: 60px;
+  }
+
+  .circle-2 {
+    width: 45px;
+    height: 45px;
+  }
+
+  .circle-3 {
+    width: 30px;
+    height: 30px;
+  }
+
+  .preloader-progress {
+    width: 200px;
+    bottom: 30px;
+  }
+
+  .preloader-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .preloader-brand h1 {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+
+  .preloader-brand p {
+    font-size: 0.8rem;
+  }
+
+  .preloader-progress {
+    width: 150px;
+    bottom: 20px;
+  }
+}

@@ -1,14 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamic import to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import 'react-quill/dist/quill.snow.css';
+// Use react-quill-new which is compatible with React 19
+const ReactQuill = dynamic(() => import('react-quill-new'), {
+  ssr: false,
+  loading: () => <div className="p-3 border rounded" style={{ minHeight: '300px' }}>
+    <p className="text-muted">Loading editor...</p>
+  </div>
+});
+
+// Import Quill styles
+if (typeof window !== 'undefined') {
+  import('react-quill-new/dist/quill.snow.css');
+}
 
 export default function EditModal({ item, onClose, onSave, saving }) {
   const [content, setContent] = useState(item.content.html || item.content.text || '');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const modules = {
     toolbar: [
@@ -71,14 +85,20 @@ export default function EditModal({ item, onClose, onSave, saving }) {
 
           <div className="modal-body">
             <label className="form-label">Content</label>
-            <ReactQuill
-              theme="snow"
-              value={content}
-              onChange={setContent}
-              modules={modules}
-              className="bg-white"
-              style={{ minHeight: '300px' }}
-            />
+            {isClient ? (
+              <ReactQuill
+                theme="snow"
+                value={content}
+                onChange={setContent}
+                modules={modules}
+                className="bg-white"
+                style={{ minHeight: '300px' }}
+              />
+            ) : (
+              <div className="p-3 border rounded" style={{ minHeight: '300px' }}>
+                <p className="text-muted">Loading editor...</p>
+              </div>
+            )}
           </div>
 
           <div className="modal-footer">

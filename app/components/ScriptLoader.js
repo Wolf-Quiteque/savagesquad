@@ -10,12 +10,57 @@ export default function ScriptLoader() {
       if (typeof window !== 'undefined') {
         // Initialize AOS animations
         if (window.AOS) {
-          window.AOS.init({ once: true, duration: 1500 });
+          window.AOS.init({
+            once: false,  // Allow animations to trigger multiple times
+            duration: 1500,
+            offset: 120,
+            delay: 0,
+            easing: 'ease-in-out',
+            mirror: false,  // Don't animate out when scrolling past
+            anchorPlacement: 'top-bottom'
+          });
         }
 
         // Refresh animations on page load
         if (window.AOS) {
           window.AOS.refresh();
+        }
+
+        // Initialize sliders when jQuery and Slick are available
+        if (window.jQuery && window.jQuery.fn.slick) {
+          const $ = window.jQuery;
+
+          // Initialize testimonial slider if not already initialized
+          const profSlider = $('.prof-slider');
+          if (profSlider.length && !profSlider.hasClass('slick-initialized')) {
+            profSlider.slick({
+              arrows: true,
+              dots: false,
+              infinite: true,
+              autoplay: true,
+              speed: 700,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              prevArrow: '<button class="prev-arrow"><i class="fa-solid fa-arrow-left"></i></button>',
+              nextArrow: '<button class="next-arrow"><i class="fa-solid fa-arrow-right"></i></button>',
+              responsive: [{
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  dots: false,
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }]
+            });
+          }
         }
       }
     };
@@ -23,7 +68,23 @@ export default function ScriptLoader() {
     // Wait for all scripts to load
     const timer = setTimeout(initScripts, 200);
 
-    return () => clearTimeout(timer);
+    // Also reinitialize when testimonials might have loaded
+    const testimonialTimer = setTimeout(initScripts, 1000);
+
+    // Re-initialize on scroll for better detection
+    const handleScroll = () => {
+      if (window.AOS) {
+        window.AOS.refresh();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(testimonialTimer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (

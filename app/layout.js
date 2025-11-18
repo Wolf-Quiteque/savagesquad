@@ -1,17 +1,18 @@
 import BackToTopButton from './components/BackToTopButton';
 import ScriptLoader from './components/ScriptLoader';
 import AnalyticsTracker from './components/AnalyticsTracker';
+import RootLayoutClient from './components/RootLayoutClient';
 
 export const metadata = {
   title: "Savage Squade | Surety Bond Certified Credit Services & Analysis",
   description: "Empower your credit journey with Savage Squade's professional, surety bond certified credit services. Get free consultation, expert analysis, and personalized solutions to improve your credit health.",
   keywords: "credit services, credit analysis, credit repair, credit consultation, surety bond certified, credit monitoring, financial goals, credit improvement",
-  
+
   // Open Graph for Social Media
   openGraph: {
     title: "Savage Squade | Professional Credit Services",
     description: "Empower your credit journey with surety bond certified credit services. Schedule your free consultation today!",
-    url: "https://savagesquad.vercel.app",
+    url: "https://www.savagecreditservices.com",
     siteName: "Savage Squade",
     type: "website",
     locale: "en_US",
@@ -37,12 +38,10 @@ export const metadata = {
   // Additional SEO Meta Tags
   robots: "index, follow",
   author: "Savage Squade",
-  viewport: "width=device-width, initial-scale=1.0",
-  charset: "UTF-8",
 
   // Alternate Links for Internationalization
   alternates: {
-    canonical: "https://savagesquad.vercel.app/",
+    canonical: "https://www.savagecreditservices.com/",
   },
 
   // Icons
@@ -52,67 +51,15 @@ export const metadata = {
 
   // Additional Metadata
   manifest: "/manifest.json",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1.0,
   themeColor: "#DBB46C",
 };
 
 export default function RootLayout({ children }) {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Savage Squade",
-    description: "Professional surety bond certified credit services provider",
-    url: "https://savagesquad.vercel.app/",
-    logo: "https://savagesquad.vercel.app/assets/images/logo2.png",
-    image: "https://savagesquad.vercel.app/assets/open.png",
-    sameAs: [
-      "https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/",
-      "https://www.instagram.com/savagecreditservices/?hl=en",
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "Customer Support",
-      telephone: "+1-866-753-4963",
-      email: "Credit@savagesquad.com",
-      hoursAvailable: "Mo,Tu,We,Th,Fr 08:00-23:00",
-      areaServed: "US",
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1980 Post Oak Suite 100",
-      addressLocality: "Houston",
-      addressRegion: "TX",
-      postalCode: "77056",
-      addressCountry: "US",
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "38",
-    },
-  };
-
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Savage Squade",
-    description: "Surety Bond Certified Credit Services",
-    url: "https://savagesquad.vercel.app/",
-    telephone: "+1-866-753-4963",
-    email: "Credit@savagesquad.com",
-    image: "https://savagesquad.vercel.app/assets/images/logo2.png",
-    priceRange: "$",
-    areaServed: {
-      "@type": "Country",
-      name: "US",
-    },
-    openingHourSpecification: {
-      "@type": "OpeningHourSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "17:00",
-    },
-  };
-
   return (
     <html lang="en">
       <head>
@@ -150,29 +97,86 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://portal.savagecreditservice.com" />
 
+        {/* Preload critical images */}
+        <link rel="preload" as="image" href="/assets/images/index/hero23.png" />
+        <link rel="preload" as="image" href="/assets/images/index/hero_watch.png" />
+        <link rel="preload" as="image" href="/assets/images/icon/hero_star.png" />
+        <link rel="preload" as="image" href="/assets/images/logo2.png" />
+
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Savage Squade",
+              description: "Professional surety bond certified credit services provider",
+              url: "https://www.savagecreditservices.com/",
+              logo: "https://www.savagecreditservices.com/assets/images/logo2.png",
+              image: "https://www.savagecreditservices.com/assets/open.png",
+              sameAs: [
+                "https://www.facebook.com/people/Savage-Credit-Repair/61558166635772/",
+                "https://www.instagram.com/savagecreditservices/?hl=en",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "Customer Support",
+                telephone: "+1-866-753-4963",
+                email: "Credit@savagesquad.com",
+                hoursAvailable: "Mo,Tu,We,Th,Fr 08:00-23:00",
+                areaServed: "US",
+              },
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "1980 Post Oak Suite 100",
+                addressLocality: "Houston",
+                addressRegion: "TX",
+                postalCode: "77056",
+                addressCountry: "US",
+              },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                reviewCount: "38",
+              },
+            }),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Savage Squade",
+              description: "Surety Bond Certified Credit Services",
+              url: "https://www.savagecreditservices.com/",
+              telephone: "+1-866-753-4963",
+              email: "Credit@savagesquad.com",
+              image: "https://www.savagecreditservices.com/assets/images/logo2.png",
+              priceRange: "$",
+              areaServed: {
+                "@type": "Country",
+                name: "US",
+              },
+              openingHourSpecification: {
+                "@type": "OpeningHourSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                opens: "09:00",
+                closes: "17:00",
+              },
+            }),
           }}
         />
       </head>
       <body>
-        <AnalyticsTracker />
-        {children}
-
-        {/* button back to top */}
-        <BackToTopButton />
-
-        {/* JavaScript files */}
-        <ScriptLoader />
+        <RootLayoutClient>
+          <AnalyticsTracker />
+          {children}
+          <BackToTopButton />
+          <ScriptLoader />
+        </RootLayoutClient>
       </body>
     </html>
   );

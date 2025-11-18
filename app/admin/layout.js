@@ -35,6 +35,8 @@ export default function AdminLayout({ children }) {
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         padding: 1.5rem;
         margin-bottom: 1.5rem;
+        overflow: hidden;
+        word-wrap: break-word;
       }
       .stat-card {
         background: white;
@@ -51,6 +53,14 @@ export default function AdminLayout({ children }) {
         color: #6c757d;
         font-size: 0.875rem;
         text-transform: uppercase;
+      }
+
+      /* Quill editor styles */
+      .ql-container {
+        font-size: 16px;
+      }
+      .ql-editor {
+        min-height: 300px;
       }
     `;
     document.head.appendChild(style);

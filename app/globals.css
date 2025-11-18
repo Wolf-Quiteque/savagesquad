@@ -35,6 +35,16 @@ a {
   text-decoration: none;
 }
 
+/* Image optimization styles */
+img.blur {
+  filter: blur(8px);
+  transition: filter 0.3s ease-out;
+}
+
+img {
+  transition: filter 0.3s ease-out;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

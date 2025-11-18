@@ -111,7 +111,9 @@ export default function ContentEditor() {
               </div>
             </div>
           ) : (
-            content.map((item) => (
+            content
+              .filter((item) => !item.section_id.toLowerCase().includes('testimonial'))
+              .map((item) => (
               <div key={item.section_id} className="col-12">
                 <div
                   className="admin-card cursor-pointer"
@@ -149,12 +151,13 @@ export default function ContentEditor() {
                         </div>
                       ) : (
                         <div
-                          className="text-truncate"
                           style={{
                             display: '-webkit-box',
                             WebkitLineClamp: 3,
                             WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            wordBreak: 'break-word',
+                            maxWidth: '100%'
                           }}
                           dangerouslySetInnerHTML={{
                             __html: item.content.html || item.content.text || 'No content'

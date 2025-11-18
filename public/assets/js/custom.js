@@ -156,8 +156,8 @@ $('.prof-slider').slick({
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // prevArrow: '<button class="prev-arrow"><i class="fa-solid fa-arrow-left"></i></button>',
-    // nextArrow: '<button class="next-arrow"><i class="fa-solid fa-arrow-right"></i></button>',
+    prevArrow: '<button class="prev-arrow"><i class="fa-solid fa-arrow-left"></i></button>',
+    nextArrow: '<button class="next-arrow"><i class="fa-solid fa-arrow-right"></i></button>',
     responsive: [{
             breakpoint: 768,
             settings: {
@@ -356,13 +356,15 @@ accordionItems.forEach((item, index) => {
   // form Subscribe massage
   const aboutFor = document.getElementById('footer-sub2');
   const aboutMessag = document.getElementById('Succes-box2');
-  aboutFor.addEventListener('submit', (event) => {
-      event.preventDefault();
-      aboutMessag.innerHTML = 'You Subscribe successfully!';
-      aboutMessag.style.display = 'block';
-      aboutFor.reset();
-      setTimeout(() => {
-        aboutMessag.style.display = 'none';
-      }, 3000);
-  });
+  if (aboutFor && aboutMessag) {
+    aboutFor.addEventListener('submit', (event) => {
+        event.preventDefault();
+        aboutMessag.innerHTML = 'You Subscribe successfully!';
+        aboutMessag.style.display = 'block';
+        aboutFor.reset();
+        setTimeout(() => {
+          aboutMessag.style.display = 'none';
+        }, 3000);
+    });
+  }
 

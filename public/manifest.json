@@ -1,0 +1,21 @@
+{
+  "name": "Savage Squade - Credit Services",
+  "short_name": "Savage Squade",
+  "description": "Professional surety bond certified credit services. Get expert credit analysis and personalized solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#DBB46C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/faviconnew.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

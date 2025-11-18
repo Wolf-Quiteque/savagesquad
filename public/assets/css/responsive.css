@@ -64,7 +64,8 @@
         background-position: 47px -49px;
     }
     .next-arrow{
-        left: 752px;  
+        left: auto;
+        right: -26px;
     }
     .privacy {
         margin-left: 0px;
@@ -90,17 +91,18 @@
     h1 {
         font-size: 60px;
         line-height: 74px;
-       
+
     }
      /* ====== index.html ====== */
      .navbar-toggle{
         display: block;
     }
-    .hero img[alt='hero_img1'] {
-        width: 98%;
-        position: relative;
-        top: -30px;
-        left: -39px;
+    .hero img[alt='hero_img1'],
+    .hero .moving {
+        width: 98% !important;
+        position: relative !important;
+        top: -30px !important;
+        left: -39px !important;
     }
     .w-v{
         display: none;
@@ -296,10 +298,12 @@
         background-position: -3px -45px;
       
     }
-    .hero img[alt='hero_img1'] {
-        position: relative;
-        top: -22px;
-        left: -38px;
+    .hero img[alt='hero_img1'],
+    .hero .moving {
+        position: relative !important;
+        top: -22px !important;
+        left: -38px !important;
+        width: 98% !important;
     }
     .hero img[alt='hero_img2'] {
         width: 80px;
@@ -439,6 +443,16 @@
 }
 .prof-size {
     width: 80%;
+}
+.prev-arrow {
+    left: -50px;
+    width: 50px;
+    height: 50px;
+}
+.next-arrow {
+    right: -50px;
+    width: 50px;
+    height: 50px;
 }
 .question {
     padding-top: 70px;
@@ -643,10 +657,16 @@ width: 70%;
 
 @media screen and (max-width: 767px) {
     /* ====== index.html ====== */
-    .hero img[alt='hero_img1'] {
-        width: 76%;
-        margin-left: 35px;
-        margin-top: 20px;
+    .hero img[alt='hero_img1'],
+    .hero .moving {
+        width: 65% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 20px !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        display: block !important;
     }
     .hero .position-relative {
         background-size: 100% 112%;
@@ -654,6 +674,21 @@ width: 70%;
     }
     .ab_card2 .col-2 {
         display: none !important;
+    }
+    .ab_card2 .position-relative {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+    .ab_card2 .position-relative img {
+        width: auto;
+        height: auto;
+    }
+    .ab_card2 .position-relative img[alt='about_img2'] {
+        margin-left: -15px;
+        z-index: 1;
     }
     .about {
         margin: 50px 0;
@@ -836,9 +871,30 @@ width: 70%;
     .hero {
         margin: 35px 0;
     }
+    .hero img[alt='hero_img1'],
+    .hero .moving {
+        width: 70% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: 0 !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+        display: block !important;
+    }
+    .hero .position-relative {
+        background-size: 100% 100%;
+        background-position: 15px -15px;
+    }
     .hero img[alt='hero_img2'] {
-        width: 70px;  
-        left: 20px;   
+        width: 70px;
+        left: 20px;
+    }
+    .hero img[alt='hero_icon']{
+        width: 12px;
+        top: -8px;
+        left: -20px;
     }
     .hero p {
         color: #E4E4E4;
@@ -941,6 +997,23 @@ width: 70%;
     .profaessional p {
         font-size: 12px;
         padding: 15px 5px;
+    }
+    .prof-size {
+        padding: 0;
+    }
+    .prev-arrow {
+        left: -15px;
+        width: 45px;
+        height: 45px;
+    }
+    .next-arrow {
+        right: -15px;
+        width: 45px;
+        height: 45px;
+    }
+    .prev-arrow i,
+    .next-arrow i {
+        font-size: 16px;
     }
     .accordion-item{
         padding: 0px 5px;
