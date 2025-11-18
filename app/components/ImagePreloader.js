@@ -19,45 +19,42 @@ export default function ImagePreloader({ onLoadComplete }) {
     setParticles(generatedParticles);
 
     const loadImages = async () => {
-      // Wait longer for DOM to be fully ready and CMS/MongoDB content to load
-      await new Promise(resolve => setTimeout(resolve, 1200));
+      // Quick initial wait for first render
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // Keep polling for new images until they stabilize (CMS content loaded)
       const getImages = () => document.querySelectorAll('img:not([style*="display: none"])');
       
-      let previousCount = 0;
-      let stableCount = 0;
-      const maxAttempts = 40;
-      let attempts = 0;
+      let imageElements = getImages();
+      let totalImages = imageElements.length;
+      let stableChecks = 0;
+      let previousCount = totalImages;
 
-      const checkImagesStabilized = () => {
-        return new Promise((resolve) => {
-          const checkStability = setInterval(() => {
-            const currentImages = getImages();
-            const currentCount = currentImages.length;
+      // Quick stability check - only wait 2-3 seconds max for new images
+      const stabilityCheckInterval = setInterval(() => {
+        const currentImages = getImages();
+        const currentCount = currentImages.length;
 
-            // If image count hasn't changed, consider it stable
-            if (currentCount === previousCount) {
-              stableCount++;
-            } else {
-              stableCount = 0;
-            }
+        if (currentCount === previousCount) {
+          stableChecks++;
+        } else {
+          stableChecks = 0;
+        }
 
-            previousCount = currentCount;
-            attempts++;
+        previousCount = currentCount;
+        imageElements = currentImages;
+        totalImages = currentCount;
 
-            // Continue if stable for 4 checks or reached max attempts
-            if (stableCount >= 4 || attempts >= maxAttempts) {
-              clearInterval(checkStability);
-              resolve(currentImages);
-            }
-          }, 150);
-        });
-      };
+        // Consider stable after 2 checks or 3 second timeout
+        if (stableChecks >= 2) {
+          clearInterval(stabilityCheckInterval);
+        }
+      }, 500);
 
-      const imageElements = await checkImagesStabilized();
-      const totalImages = imageElements.length;
+      // Timeout for stability check
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      clearInterval(stabilityCheckInterval);
 
+      // If no images found, complete immediately
       if (totalImages === 0) {
         handleLoadComplete();
         return;
@@ -68,15 +65,15 @@ export default function ImagePreloader({ onLoadComplete }) {
       const imageLoadPromises = [];
 
       const updateProgress = (img) => {
-        // Prevent duplicate counting
         if (loadedImages.has(img)) return;
         loadedImages.add(img);
 
         loadedCount++;
-        const newProgress = Math.floor((loadedCount / totalImages) * 100);
+        const newProgress = Math.max(progress, Math.floor((loadedCount / totalImages) * 95));
         setProgress(newProgress);
 
-        if (loadedCount >= totalImages) {
+        // Don't wait for all - complete at 85% to show content sooner
+        if (loadedCount >= Math.ceil(totalImages * 0.85)) {
           handleLoadComplete();
         }
       };
@@ -99,31 +96,47 @@ export default function ImagePreloader({ onLoadComplete }) {
               img.removeEventListener('error', onError);
               resolve();
             };
-            img.addEventListener('load', onLoad);
-            img.addEventListener('error', onError);
+            
+            // Set timeout for individual image
+            const timeout = setTimeout(() => {
+              updateProgress(img);
+              img.removeEventListener('load', onLoad);
+              img.removeEventListener('error', onError);
+              resolve();
+            }, 5000);
+
+            img.addEventListener('load', () => {
+              clearTimeout(timeout);
+              onLoad();
+            });
+            img.addEventListener('error', () => {
+              clearTimeout(timeout);
+              onError();
+            });
           }
         });
       };
 
+      // Start loading all images in parallel immediately
       imageElements.forEach((img) => {
         imageLoadPromises.push(loadImagePromise(img));
       });
 
-      // Wait for all images to load or timeout
+      // Wait for images but with a max timeout
       await Promise.race([
         Promise.all(imageLoadPromises),
-        new Promise(resolve => setTimeout(resolve, 15000))
+        new Promise(resolve => setTimeout(resolve, 8000))
       ]);
 
-      // Ensure we complete even if some images didn't load
+      // Force complete after timeout
       if (loadedCount < totalImages) {
         setProgress(100);
         handleLoadComplete();
       }
     };
 
-    // Start loading after a brief delay to ensure DOM is ready
-    const timer = setTimeout(loadImages, 100);
+    // Start immediately
+    const timer = setTimeout(loadImages, 50);
     return () => clearTimeout(timer);
   }, []);
 
