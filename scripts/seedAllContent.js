@@ -25,7 +25,7 @@ const allContent = [
     content_type: 'image',
     content: {
       url: '/assets/images/logo2.png',
-      alt: 'Savage Squade Logo',
+      alt: 'Savage sqaud Logo',
     },
     metadata: {
       section_name: 'Header Logo',
@@ -39,7 +39,7 @@ const allContent = [
     content_type: 'image',
     content: {
       url: '/assets/images/savage squad logos_1 gold.png',
-      alt: 'Savage Squade Gold Logo',
+      alt: 'Savage sqaud Gold Logo',
     },
     metadata: {
       section_name: 'Sidebar Logo',
@@ -68,8 +68,8 @@ const allContent = [
     section_id: 'hero_description',
     content_type: 'rich_text',
     content: {
-      text: 'Savage Squade provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions.',
-      html: '<p>Savage Squade provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions.</p>',
+      text: 'Savage sqaud provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions.',
+      html: '<p>Savage sqaud provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions.</p>',
     },
     metadata: {
       section_name: 'Hero Description',
@@ -126,8 +126,8 @@ const allContent = [
     section_id: 'about_title',
     content_type: 'rich_text',
     content: {
-      text: 'About Savage Squade',
-      html: '<h3>About Savage Squade</h3>',
+      text: 'About Savage sqaud',
+      html: '<h3>About Savage sqaud</h3>',
     },
     metadata: {
       section_name: 'About Title',
@@ -167,8 +167,8 @@ const allContent = [
     section_id: 'about_clients_text',
     content_type: 'rich_text',
     content: {
-      text: 'Clients have trusted Savage Squade with their credit journey!',
-      html: '<p class="p-f-s">Clients have trusted Savage Squade with their credit journey!</p>',
+      text: 'Clients have trusted Savage sqaud with their credit journey!',
+      html: '<p class="p-f-s">Clients have trusted Savage sqaud with their credit journey!</p>',
     },
     metadata: {
       section_name: 'About - Clients Text',
@@ -252,8 +252,8 @@ const allContent = [
     section_id: 'finance_description',
     content_type: 'rich_text',
     content: {
-      text: 'As a surety bond certified provider, Savage Squade offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details.',
-      html: '<p class="mt-0">As a surety bond certified provider, Savage Squade offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details.</p>',
+      text: 'As a surety bond certified provider, Savage sqaud offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details.',
+      html: '<p class="mt-0">As a surety bond certified provider, Savage sqaud offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details.</p>',
     },
     metadata: {
       section_name: 'Finance Section Description',
@@ -419,8 +419,8 @@ const allContent = [
     section_id: 'process_description',
     content_type: 'rich_text',
     content: {
-      text: 'Getting started with Savage Squade is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way.',
-      html: '<p class="pt-lg-4 pt-md-3 pt-sm-2 pt-2 pb-2">Getting started with Savage Squade is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way.</p>',
+      text: 'Getting started with Savage sqaud is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way.',
+      html: '<p class="pt-lg-4 pt-md-3 pt-sm-2 pt-2 pb-2">Getting started with Savage sqaud is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way.</p>',
     },
     metadata: {
       section_name: 'Process Description',
@@ -572,8 +572,8 @@ const allContent = [
     section_id: 'services_description',
     content_type: 'rich_text',
     content: {
-      text: 'Savage Squade is proud to be surety bond certified, providing you with professional credit services you can trust. Access our client portal and mobile apps for convenient credit monitoring and support anytime, anywhere.',
-      html: '<p class="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4">Savage Squade is proud to be surety bond certified, providing you with professional credit services you can trust. Access our client portal and mobile apps for convenient credit monitoring and support anytime, anywhere.</p>',
+      text: 'Savage sqaud is proud to be surety bond certified, providing you with professional credit services you can trust. Access our client portal and mobile apps for convenient credit monitoring and support anytime, anywhere.',
+      html: '<p class="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4">Savage sqaud is proud to be surety bond certified, providing you with professional credit services you can trust. Access our client portal and mobile apps for convenient credit monitoring and support anytime, anywhere.</p>',
     },
     metadata: {
       section_name: 'Services Section Description',
@@ -644,8 +644,8 @@ const allContent = [
     section_id: 'visa_description',
     content_type: 'rich_text',
     content: {
-      text: 'Savage Squade offers multiple ways to stay connected with your credit journey. Access our secure client portal from any device or download our mobile apps for iOS and Android. Manage your account, view your credit analysis, and communicate with our team - all at your fingertips.',
-      html: '<p class="text-md-start text-sm-center text-center p-f-s">Savage Squade offers multiple ways to stay connected with your credit journey. Access our secure client portal from any device or download our mobile apps for iOS and Android.</p><p class="text-md-start text-sm-center text-center p-f-s">Manage your account, view your credit analysis, and communicate with our team - all at your fingertips.</p>',
+      text: 'Savage sqaud offers multiple ways to stay connected with your credit journey. Access our secure client portal from any device or download our mobile apps for iOS and Android. Manage your account, view your credit analysis, and communicate with our team - all at your fingertips.',
+      html: '<p class="text-md-start text-sm-center text-center p-f-s">Savage sqaud offers multiple ways to stay connected with your credit journey. Access our secure client portal from any device or download our mobile apps for iOS and Android.</p><p class="text-md-start text-sm-center text-center p-f-s">Manage your account, view your credit analysis, and communicate with our team - all at your fingertips.</p>',
     },
     metadata: {
       section_name: 'Visa/Access Description',
@@ -816,8 +816,8 @@ const allContent = [
     section_id: 'testimonials_description',
     content_type: 'rich_text',
     content: {
-      text: 'See what our clients say about their experience with Savage Squade. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support.',
-      html: '<p class="text-center pt-3 pb-5 mb-2">See what our clients say about their experience with Savage Squade. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support.</p>',
+      text: 'See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support.',
+      html: '<p class="text-center pt-3 pb-5 mb-2">See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support.</p>',
     },
     metadata: {
       section_name: 'Testimonials Description',
@@ -858,8 +858,8 @@ const allContent = [
     section_id: 'testimonial_1_text',
     content_type: 'rich_text',
     content: {
-      text: 'Savage Squade helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!',
-      html: '<p class="text-center p-f-s">Savage Squade helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!</p>',
+      text: 'Savage sqaud helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!',
+      html: '<p class="text-center p-f-s">Savage sqaud helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!</p>',
     },
     metadata: {
       section_name: 'Testimonial 1 Text',
@@ -943,7 +943,7 @@ const allContent = [
     section_id: 'faq_q1',
     content_type: 'text',
     content: {
-      text: 'What services does Savage Squade provide?',
+      text: 'What services does Savage sqaud provide?',
     },
     metadata: {
       section_name: 'FAQ Question 1',
@@ -956,8 +956,8 @@ const allContent = [
     section_id: 'faq_a1',
     content_type: 'rich_text',
     content: {
-      text: 'Savage Squade is a surety bond certified provider of professional credit services. We help clients through free consultations, accurate credit analysis, and personalized education to achieve their financial goals. We review your credit reports and provide clear recommendations.',
-      html: '<p>Savage Squade is a surety bond certified provider of professional credit services. We help clients through free consultations, accurate credit analysis, and personalized education to achieve their financial goals. We review your credit reports and provide clear recommendations.</p>',
+      text: 'Savage sqaud is a surety bond certified provider of professional credit services. We help clients through free consultations, accurate credit analysis, and personalized education to achieve their financial goals. We review your credit reports and provide clear recommendations.',
+      html: '<p>Savage sqaud is a surety bond certified provider of professional credit services. We help clients through free consultations, accurate credit analysis, and personalized education to achieve their financial goals. We review your credit reports and provide clear recommendations.</p>',
     },
     metadata: {
       section_name: 'FAQ Answer 1',
@@ -970,7 +970,7 @@ const allContent = [
     section_id: 'faq_q2',
     content_type: 'text',
     content: {
-      text: 'How do I get started with Savage Squade?',
+      text: 'How do I get started with Savage sqaud?',
     },
     metadata: {
       section_name: 'FAQ Question 2',
@@ -997,7 +997,7 @@ const allContent = [
     section_id: 'faq_q3',
     content_type: 'text',
     content: {
-      text: 'Is my information secure with Savage Squade?',
+      text: 'Is my information secure with Savage sqaud?',
     },
     metadata: {
       section_name: 'FAQ Question 3',
@@ -1037,8 +1037,8 @@ const allContent = [
     section_id: 'faq_a4',
     content_type: 'rich_text',
     content: {
-      text: 'Yes! Savage Squade offers mobile apps for both iOS and Android devices. You can also access our client portal from any web browser. This gives you 24/7 access to your account, credit analysis, and direct communication with our team.',
-      html: '<p>Yes! Savage Squade offers mobile apps for both iOS and Android devices. You can also access our client portal from any web browser. This gives you 24/7 access to your account, credit analysis, and direct communication with our team.</p>',
+      text: 'Yes! Savage sqaud offers mobile apps for both iOS and Android devices. You can also access our client portal from any web browser. This gives you 24/7 access to your account, credit analysis, and direct communication with our team.',
+      html: '<p>Yes! Savage sqaud offers mobile apps for both iOS and Android devices. You can also access our client portal from any web browser. This gives you 24/7 access to your account, credit analysis, and direct communication with our team.</p>',
     },
     metadata: {
       section_name: 'FAQ Answer 4',
@@ -1067,8 +1067,8 @@ const allContent = [
     section_id: 'contact_description',
     content_type: 'rich_text',
     content: {
-      text: 'Get in touch with Savage Squade for professional credit services. We\'re here to answer your questions and help you achieve your financial goals.',
-      html: '<p class="text-center">Get in touch with Savage Squade for professional credit services. We\'re here to answer your questions and help you achieve your financial goals.</p>',
+      text: 'Get in touch with Savage sqaud for professional credit services. We\'re here to answer your questions and help you achieve your financial goals.',
+      html: '<p class="text-center">Get in touch with Savage sqaud for professional credit services. We\'re here to answer your questions and help you achieve your financial goals.</p>',
     },
     metadata: {
       section_name: 'Contact Section Description',
@@ -1123,7 +1123,7 @@ const allContent = [
     content_type: 'image',
     content: {
       url: '/assets/images/logo2.png',
-      alt: 'Savage Squade Footer Logo',
+      alt: 'Savage sqaud Footer Logo',
     },
     metadata: {
       section_name: 'Footer Logo',
@@ -1136,7 +1136,7 @@ const allContent = [
     section_id: 'footer_copyright',
     content_type: 'text',
     content: {
-      text: 'Copyright © 2025 Savage Squade. All Rights Reserved. Surety Bond Certified.',
+      text: 'Copyright © 2025 Savage sqaud. All Rights Reserved. Surety Bond Certified.',
     },
     metadata: {
       section_name: 'Footer Copyright',

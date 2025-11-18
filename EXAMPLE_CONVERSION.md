@@ -70,7 +70,7 @@ export default function Home() {
               }} />
 
               <p dangerouslySetInnerHTML={{
-                __html: getContent('hero_description', 'html') || 'Savage Squade provides surety bond certified credit services...'
+                __html: getContent('hero_description', 'html') || 'Savage sqaud provides surety bond certified credit services...'
               }} />
 
               <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">
@@ -128,7 +128,7 @@ Once the hero section works, you can convert other sections using the same patte
 ### About Section
 ```jsx
 <h3 dangerouslySetInnerHTML={{
-  __html: getContent('about_title', 'html') || 'About Savage Squade'
+  __html: getContent('about_title', 'html') || 'About Savage sqaud'
 }} />
 
 <p dangerouslySetInnerHTML={{

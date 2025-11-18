@@ -44,7 +44,7 @@ import CMSContent from '@/app/components/CMSContent';
   sectionId="header_logo"
   type="image"
   fallback="/assets/images/logo2.png"
-  alt="Savage Squade Logo"
+  alt="Savage sqaud Logo"
   style={{height:"80px", width:"auto"}}
 />
 ```
@@ -123,7 +123,7 @@ export default function Home() {
     <div className="row">
       <div className="col-md-6">
         <h1>EMPOWER YOUR CREDIT JOURNEY</h1>
-        <p>Savage Squade provides surety bond certified credit services...</p>
+        <p>Savage sqaud provides surety bond certified credit services...</p>
       </div>
       <div className="col-md-6">
         <img src="/assets/images/index/hero23.png" alt="hero_img1" />
@@ -149,7 +149,7 @@ export default function Home() {
           sectionId="hero_description"
           type="html"
           as="p"
-          fallback="Savage Squade provides surety bond certified credit services..."
+          fallback="Savage sqaud provides surety bond certified credit services..."
         />
       </div>
       <div className="col-md-6">
