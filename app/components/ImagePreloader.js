@@ -19,15 +19,15 @@ export default function ImagePreloader({ onLoadComplete }) {
     setParticles(generatedParticles);
 
     const loadImages = async () => {
-      // Wait longer for DOM to be fully ready and CMS content to load
-      await new Promise(resolve => setTimeout(resolve, 500));
+      // Wait for DOM to be fully ready and CMS content to load
+      await new Promise(resolve => setTimeout(resolve, 800));
 
       // Keep polling for new images until they stabilize (CMS content loaded)
       const getImages = () => document.querySelectorAll('img:not([style*="display: none"])');
       
       let previousCount = 0;
       let stableCount = 0;
-      const maxAttempts = 15;
+      const maxAttempts = 25;
       let attempts = 0;
 
       const checkImagesStabilized = () => {
@@ -46,12 +46,12 @@ export default function ImagePreloader({ onLoadComplete }) {
             previousCount = currentCount;
             attempts++;
 
-            // Continue if stable for 2 checks or reached max attempts
-            if (stableCount >= 2 || attempts >= maxAttempts) {
+            // Continue if stable for 3 checks or reached max attempts
+            if (stableCount >= 3 || attempts >= maxAttempts) {
               clearInterval(checkStability);
               resolve(currentImages);
             }
-          }, 300);
+          }, 200);
         });
       };
 
@@ -65,6 +65,7 @@ export default function ImagePreloader({ onLoadComplete }) {
 
       let loadedCount = 0;
       const loadedImages = new Set();
+      const imageLoadPromises = [];
 
       const updateProgress = (img) => {
         // Prevent duplicate counting
@@ -80,32 +81,45 @@ export default function ImagePreloader({ onLoadComplete }) {
         }
       };
 
+      const loadImagePromise = (img) => {
+        return new Promise((resolve) => {
+          if (img.complete && img.naturalHeight !== 0) {
+            updateProgress(img);
+            resolve();
+          } else {
+            const onLoad = () => {
+              updateProgress(img);
+              img.removeEventListener('load', onLoad);
+              img.removeEventListener('error', onError);
+              resolve();
+            };
+            const onError = () => {
+              updateProgress(img);
+              img.removeEventListener('load', onLoad);
+              img.removeEventListener('error', onError);
+              resolve();
+            };
+            img.addEventListener('load', onLoad);
+            img.addEventListener('error', onError);
+          }
+        });
+      };
+
       imageElements.forEach((img) => {
-        if (img.complete && img.naturalHeight !== 0) {
-          updateProgress(img);
-        } else {
-          const onLoad = () => {
-            updateProgress(img);
-            img.removeEventListener('load', onLoad);
-            img.removeEventListener('error', onError);
-          };
-          const onError = () => {
-            updateProgress(img);
-            img.removeEventListener('load', onLoad);
-            img.removeEventListener('error', onError);
-          };
-          img.addEventListener('load', onLoad);
-          img.addEventListener('error', onError);
-        }
+        imageLoadPromises.push(loadImagePromise(img));
       });
 
-      // Fallback timeout - if images take too long, complete anyway
-      setTimeout(() => {
-        if (loadedCount < totalImages) {
-          setProgress(100);
-          handleLoadComplete();
-        }
-      }, 10000);
+      // Wait for all images to load or timeout
+      await Promise.race([
+        Promise.all(imageLoadPromises),
+        new Promise(resolve => setTimeout(resolve, 12000))
+      ]);
+
+      // Ensure we complete even if some images didn't load
+      if (loadedCount < totalImages) {
+        setProgress(100);
+        handleLoadComplete();
+      }
     };
 
     // Start loading after a brief delay to ensure DOM is ready
@@ -131,8 +145,8 @@ export default function ImagePreloader({ onLoadComplete }) {
         if (onLoadComplete) {
           onLoadComplete();
         }
-      }, 400);
-    }, 600);
+      }, 300);
+    }, 400);
   };
 
   if (!isVisible) return null;
