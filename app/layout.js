@@ -79,17 +79,17 @@ export default function RootLayout({ children }) {
         
         {/* Framework CSS */}
         <link rel="stylesheet" href="/assets/css/bootstrap-lib/bootstrap.min.css" />
-        
-        {/* Style Sheets */}
-        <link rel="stylesheet" href="/assets/css/style.css" />
-        <link rel="stylesheet" href="/assets/css/responsive.css" />
-        
+
+        {/* Style Sheets - with cache busting */}
+        <link rel="stylesheet" href={`/assets/css/style.css?v=${Date.now()}`} />
+        <link rel="stylesheet" href={`/assets/css/responsive.css?v=${Date.now()}`} />
+
         {/* Font Awesome Icons */}
         <link rel="stylesheet" href="/assets/font-awesome-lib/icon/font-awesome.min.css" />
-        
+
         {/* Slick Slider */}
         <link rel="stylesheet" href="/assets/css/slick.min.css" />
-        
+
         {/* Animation */}
         <link rel="stylesheet" href="/assets/css/aos.css" />
 

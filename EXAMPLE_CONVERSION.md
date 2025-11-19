@@ -73,7 +73,7 @@ export default function Home() {
                 __html: getContent('hero_description', 'html') || 'Savage sqaud provides surety bond certified credit services...'
               }} />
 
-              <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">
+              <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">
                 Schedule Free Consultation
               </a>
             </div>

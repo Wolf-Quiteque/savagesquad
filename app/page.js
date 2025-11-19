@@ -191,7 +191,7 @@ export default function Home() {
                   as="p"
                   fallback="Savage sqaud provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions."
                 />
-                <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Schedule Free Consultation</a>
+                <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">Schedule Free Consultation</a>
               </div>
               <div data-aos="fade-down" className="col-md-6 position-relative d-flex flex-column justify-content-center align-items-center mt-md-0 mt-sm-5 mt-4">
                 <div style={{ position: 'relative', width: '100%', height: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -240,7 +240,7 @@ export default function Home() {
                     fallback="We are a surety bond certified company specializing in professional credit services. Our mission is to educate clients on credit health, provide accurate credit analysis, and guide them toward achieving their financial goals through a simple and transparent process."
                   />
                   <div className="d-flex align-items-center justify-content-lg-start justify-content-md-center justify-content-center">
-                    <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Learn More</a>
+                    <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">Learn More</a>
                     <div className="abut-video">
 
 
@@ -813,7 +813,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-md-start text-sm-center text-center pt-lg-4 pt-md-2 pt-sm-0 pt-1">
-                <a className="btn-hover1" href="https://portal.savagesquad.com/Portal/meeting.jsp?id=7ff2e042-ac2f-41f4-bae3-24fdb1f43d65">Book Consultation</a>
+                <a className="btn-hover1" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">Book Consultation</a>
               </div>
             </div>
           </div>

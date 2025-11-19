@@ -15,16 +15,19 @@ export default function Testimonials() {
     // Initialize slider after testimonials load
     if (!loading && typeof window !== 'undefined' && window.jQuery && window.jQuery.fn.slick) {
       const $ = window.jQuery;
-      const profSlider = $('.prof-slider');
-
-      // Destroy existing slider if present
-      if (profSlider.hasClass('slick-initialized')) {
-        profSlider.slick('unslick');
-      }
 
       // Small delay to ensure DOM is ready
       setTimeout(() => {
-        if (profSlider.length) {
+        const profSlider = $('.prof-slider');
+
+        // Check if element exists and has length
+        if (profSlider.length > 0) {
+          // Destroy existing slider if present
+          if (profSlider.hasClass('slick-initialized')) {
+            profSlider.slick('unslick');
+          }
+
+          // Initialize slider
           profSlider.slick({
             arrows: true,
             dots: false,
@@ -83,10 +86,10 @@ export default function Testimonials() {
         <div className="container">
           <CMSContent
             sectionId="testimonials_title"
-            type="html"
-            as="div"
+            type="text"
+            as="h2"
             className="text-center"
-            fallback="Trusted By Our Clients"
+            fallback="TRUSTED BY OUR CLIENTS"
           />
           <div className="text-center py-5">
             <p className="text-muted">Loading testimonials...</p>
@@ -103,15 +106,15 @@ export default function Testimonials() {
         <div className="container">
           <CMSContent
             sectionId="testimonials_title"
-            type="html"
-            as="div"
+            type="text"
+            as="h2"
             className="text-center"
-            fallback="Trusted By Our Clients"
+            fallback="TRUSTED BY OUR CLIENTS"
           />
           <CMSContent
             sectionId="testimonials_description"
-            type="html"
-            as="div"
+            type="text"
+            as="p"
             className="text-center pt-3 pb-5 mb-2"
             fallback="See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
           />
@@ -133,8 +136,8 @@ export default function Testimonials() {
                   </div>
                   <CMSContent
                     sectionId="testimonial1_text"
-                    type="html"
-                    as="div"
+                    type="text"
+                    as="p"
                     className="text-center p-f-s"
                     fallback="Savage sqaud helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!"
                   />
@@ -149,15 +152,15 @@ export default function Testimonials() {
                   </div>
                   <CMSContent
                     sectionId="testimonial1_name"
-                    type="html"
-                    as="div"
+                    type="text"
+                    as="h5"
                     className="text-center"
                     fallback="Johnny Stone"
                   />
                   <CMSContent
                     sectionId="testimonial1_role"
-                    type="html"
-                    as="div"
+                    type="text"
+                    as="p"
                     className="text-center pt-2 pb-5 p-f-s"
                     fallback="Happy Client"
                   />
@@ -175,15 +178,15 @@ export default function Testimonials() {
       <div className="container">
         <CMSContent
           sectionId="testimonials_title"
-          type="html"
-          as="div"
+          type="text"
+          as="h2"
           className="text-center"
-          fallback="Trusted By Our Clients"
+          fallback="TRUSTED BY OUR CLIENTS"
         />
         <CMSContent
           sectionId="testimonials_description"
-          type="html"
-          as="div"
+          type="text"
+          as="p"
           className="text-center pt-3 pb-5 mb-2"
           fallback="See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
         />
