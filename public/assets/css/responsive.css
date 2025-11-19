@@ -364,6 +364,9 @@
         padding: 20px 10px;
         width: 90px;
         height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     } 
     .gate-link {
         margin-top: 30px;

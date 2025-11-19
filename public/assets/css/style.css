@@ -855,7 +855,9 @@ background-color: #082D40;
     -webkit-text-fill-color: transparent;
     width: 118px;
     height: 100px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: auto;
     border-radius: 15px;
 }
