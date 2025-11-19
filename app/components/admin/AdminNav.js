@@ -47,6 +47,12 @@ export default function AdminNav() {
             Testimonials
           </a>
           <a
+            href="/admin/faq"
+            className={`nav-link ${pathname === '/admin/faq' ? 'text-primary fw-semibold' : 'text-secondary'}`}
+          >
+            FAQ
+          </a>
+          <a
             href="/"
             target="_blank"
             className="nav-link text-secondary"

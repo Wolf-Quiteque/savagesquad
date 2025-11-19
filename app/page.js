@@ -2,6 +2,7 @@
 
 import CMSContent from '@/app/components/CMSContent';
 import Testimonials from '@/app/components/Testimonials';
+import FAQ from '@/app/components/FAQ';
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
                   sectionId="header_logo"
                   type="image"
                   fallback="/assets/images/logo2.png"
-                  alt="Savage sqaud Logo"
+                  alt="Savage Squad Logo"
                   style={{height:"80px",width:"auto"}}
                 />
               </a>
@@ -68,7 +69,7 @@ export default function Home() {
                       sectionId="sidebar_logo"
                       type="image"
                       fallback="/assets/images/savage squad logos_1 gold.png"
-                      alt="Savage sqaud Logo"
+                      alt="Savage squad Logo"
                       className="nav-logo"
                     />
                   </a>
@@ -142,12 +143,12 @@ export default function Home() {
                   sectionId="sidebar_logo"
                   type="image"
                   fallback="/assets/images/savage squad logos_1 gold.png"
-                  alt="Savage sqaud Logo"
+                  alt="Savage squad Logo"
                 />
               </a>
               <button className="close_right_sidebar fa-solid fa-xmark" onClick={() => close_right_sade()}> </button>
             </div>
-            <p className="mt-4 pb-3">Savage sqaud is surety bond certified to provide professional credit services.
+            <p className="mt-4 pb-3">Savage squad is surety bond certified to provide professional credit services.
               We help clients achieve their financial goals through expert credit analysis and personalized solutions.
             </p>
             <a href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09" className="btn-hover1">Discover More</a>
@@ -189,7 +190,7 @@ export default function Home() {
                   sectionId="hero_description"
                   type="html"
                   as="p"
-                  fallback="Savage sqaud provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions."
+                  fallback="Savage squad provides surety bond certified credit services. Schedule your free consultation today and discover how we can help you achieve your financial goals through expert credit analysis and personalized solutions."
                 />
                 <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">Schedule Free Consultation</a>
               </div>
@@ -230,7 +231,7 @@ export default function Home() {
                     sectionId="about_title"
                     type="html"
                     as="h3"
-                    fallback="About Savage sqaud"
+                    fallback="About Savage Squad"
                   />
                   <CMSContent
                     sectionId="about_description"
@@ -268,7 +269,7 @@ export default function Home() {
                           type="html"
                           as="div"
                           className="p-f-s"
-                          fallback="Clients have trusted Savage sqaud with their credit journey!"
+                          fallback="Clients have trusted Savage squad with their credit journey!"
                         />
                       </div>
                       <div className="col-2 p-0 d-flex justify-content-center align-items-center">
@@ -338,7 +339,7 @@ export default function Home() {
             type="html"
             as="p"
             className="mt-0"
-            fallback="As a surety bond certified provider, Savage sqaud offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details."
+            fallback="As a surety bond certified provider, Savage squad offers comprehensive credit services designed to help you understand and improve your credit health. Our easy process starts with a free consultation, followed by accurate credit analysis using your credit monitoring details."
           />
           <div className="finanes-card row gap-md-0 gap-sm-4 gap-4">
             <div className="col-lg-4 col-md-4 d-flex justify-content-center pe-lg-3 pe-md-0 pe-sm-3 pe-3">
@@ -484,7 +485,7 @@ export default function Home() {
                 type="html"
                 as="p"
                 className="pt-lg-4 pt-md-3 pt-sm-2 pt-2 pb-2"
-                fallback="Getting started with Savage sqaud is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way."
+                fallback="Getting started with Savage squad is easy. Our straightforward process ensures you receive the best credit services with complete transparency and professional guidance every step of the way."
               />
               <div className="gate mt-md-3 mt-sm-0 mt-4   d-flex flex-md-row flex-sm-column flex-column align-items-center">
                 <figure className="d-flex align-items-center">
@@ -580,7 +581,7 @@ export default function Home() {
               <h2 className="text-lg-start text-md-start text-sm-center text-center">SURETY BOND CERTIFIED
                 CREDIT SERVICES</h2>
               <p className="text-lg-start text-md-start text-sm-center text-center mt-lg-4 mt-md-2 mt-sm-2 mt-2 pb-4 ">
-                Savage sqaud is proud to be surety bond certified, providing you with professional credit services
+                Savage squad is proud to be surety bond certified, providing you with professional credit services
                 you can trust. Access our client portal and mobile apps for convenient credit monitoring and support
                 anytime, anywhere.</p>
               <div className=" d-flex  justify-content-center gap-lg-4 gap-md-3 gap-sm-2 gap-2">
@@ -679,7 +680,7 @@ export default function Home() {
                 <h3 className="text-md-start text-sm-center text-center">Access Your Account
                   Anywhere
                 </h3>
-                <p className="text-md-start text-sm-center text-center p-f-s">Savage sqaud offers multiple ways
+                <p className="text-md-start text-sm-center text-center p-f-s">Savage squad offers multiple ways
                   to stay connected with your credit journey. Access our secure client portal from any device
                   or download our mobile apps for iOS and Android.</p>
                 <p className="text-md-start text-sm-center text-center p-f-s">Manage your account, view your
@@ -842,101 +843,10 @@ export default function Home() {
                 className="text-lg-start text-md-start text-sm-center text-center mt-md-3 mt-3"
                 fallback="Have questions about our credit services? We're here to help! Browse our most common questions below or schedule a free consultation to speak directly with our team about your specific situation."
               />
-              <div className="text-lg-start text-md-start text-sm-center text-center ">
-                <a className="btn-hover1" href="faq.html">More FAQs</a>
-              </div>
+            
             </div>
             <div className="question-collapes col-lg-6 col-md-6 mt-md-0 mt-sm-3 mt-3" data-aos="zoom-in">
-              <div className="accordion" id="accordionExample">
-                <div className="accordion-item">
-                  <h5 className="accordion-header" id="headingOne">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <CMSContent
-                        sectionId="faq_q1"
-                        type="text"
-                        as="span"
-                        fallback="What services does Savage sqaud provide?"
-                      />
-                    </button>
-                  </h5>
-                  <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <CMSContent
-                        sectionId="faq_a1"
-                        type="html"
-                        as="p"
-                        fallback="Savage sqaud is a surety bond certified provider of professional credit services. We help clients through free consultations, accurate credit analysis, and personalized education to achieve their financial goals. We review your credit reports and provide clear recommendations."
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h5 className="accordion-header" id="headingTwo">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      <CMSContent
-                        sectionId="faq_q2"
-                        type="text"
-                        as="span"
-                        fallback="How do I get started with Savage sqaud?"
-                      />
-                    </button>
-                  </h5>
-                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <CMSContent
-                        sectionId="faq_a2"
-                        type="html"
-                        as="p"
-                        fallback="Simply schedule your free consultation using our online booking system. During the consultation, we'll discuss your credit goals. Then, you'll provide your credit monitoring login details so we can conduct an accurate credit analysis and provide personalized recommendations."
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h5 className="accordion-header" id="headingThree">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      <CMSContent
-                        sectionId="faq_q3"
-                        type="text"
-                        as="span"
-                        fallback="Is my information secure with Savage sqaud?"
-                      />
-                    </button>
-                  </h5>
-                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <CMSContent
-                        sectionId="faq_a3"
-                        type="html"
-                        as="p"
-                        fallback="Absolutely! We are surety bond certified, which provides an additional layer of protection and accountability. Your credit monitoring login details and personal information are handled with the highest security standards and used solely for conducting your credit analysis."
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="accordion-item">
-                  <h5 className="accordion-header" id="headingFour">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                      <CMSContent
-                        sectionId="faq_q4"
-                        type="text"
-                        as="span"
-                        fallback="Can I access my account from my phone?"
-                      />
-                    </button>
-                  </h5>
-                  <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                      <CMSContent
-                        sectionId="faq_a4"
-                        type="html"
-                        as="p"
-                        fallback="Yes! Savage sqaud offers mobile apps for both iOS and Android devices. You can also access our client portal from any web browser. This gives you 24/7 access to your account, credit analysis, and direct communication with our team."
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <FAQ />
             </div>
           </div>
         </div>
@@ -959,7 +869,7 @@ export default function Home() {
               type="html"
               as="p"
               className="text-center"
-              fallback="Get in touch with Savage sqaud for professional credit services. We're here to answer your questions and help you achieve your financial goals."
+              fallback="Get in touch with Savage squad for professional credit services. We're here to answer your questions and help you achieve your financial goals."
             />
           </div>
         </div>
@@ -1047,7 +957,7 @@ export default function Home() {
                   sectionId="footer_logo"
                   type="image"
                   fallback="/assets/images/logo2.png"
-                  alt="Savage sqaud Logo"
+                  alt="Savage squad Logo"
                   style={{height:"100px",width:"auto"}}
                 />
               </figure>
@@ -1098,7 +1008,7 @@ export default function Home() {
               sectionId="footer_copyright"
               type="html"
               as="p"
-              fallback="Copyright © 2025 Savage sqaud. All Rights Reserved. Surety Bond Certified."
+              fallback="Copyright © 2025 Savage Squad. All Rights Reserved. Surety Bond Certified."
             />
             <CMSContent
               sectionId="footer_tagline"

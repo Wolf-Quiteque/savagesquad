@@ -2,40 +2,38 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import AdminNav from '@/app/components/admin/AdminNav';
 
 export default function FAQManager() {
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingFaq, setEditingFaq] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     question: '',
     answer: '',
-    order: 0,
+    order: 1,
     active: true
   });
-  const router = useRouter();
 
   useEffect(() => {
-    checkAuth();
     fetchFAQs();
   }, []);
 
-  const checkAuth = async () => {
-    try {
-      const res = await fetch('/api/admin/check-auth');
-      if (!res.ok) {
-        router.push('/admin/login');
-      }
-    } catch (error) {
-      console.error('Auth check failed:', error);
-      router.push('/admin/login');
-    }
-  };
-
   const fetchFAQs = async () => {
+    setLoading(true);
     try {
       const res = await fetch('/api/faq');
+
+      if (res.status === 401) {
+        router.push('/admin/login');
+        return;
+      }
+
       const data = await res.json();
       setFaqs(data.faqs || []);
     } catch (error) {
@@ -44,8 +42,49 @@ export default function FAQManager() {
     setLoading(false);
   };
 
+  const getNextAvailableOrder = () => {
+    if (faqs.length === 0) return 1;
+    const maxOrder = Math.max(...faqs.map(f => f.order || 1));
+    return maxOrder + 1;
+  };
+
+  const handleOpenModal = (faq = null) => {
+    if (faq) {
+      setEditingFaq(faq);
+      setFormData({
+        question: faq.question,
+        answer: faq.answer,
+        order: faq.order || 1,
+        active: faq.active !== false
+      });
+    } else {
+      setEditingFaq(null);
+      const nextOrder = getNextAvailableOrder();
+      setFormData({
+        question: '',
+        answer: '',
+        order: nextOrder,
+        active: true
+      });
+    }
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditingFaq(null);
+    setFormData({
+      question: '',
+      answer: '',
+      order: 1,
+      active: true
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMessage('');
+    setSaving(true);
 
     try {
       const url = editingFaq
@@ -60,48 +99,50 @@ export default function FAQManager() {
         body: JSON.stringify(formData)
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (data.success || res.ok) {
+        setSuccessMessage(
+          editingFaq
+            ? 'FAQ updated successfully!'
+            : 'FAQ created successfully!'
+        );
+        handleCloseModal();
         await fetchFAQs();
-        setShowModal(false);
-        resetForm();
-        alert(editingFaq ? 'FAQ updated successfully!' : 'FAQ created successfully!');
+        setTimeout(() => setSuccessMessage(''), 3000);
       } else {
-        alert('Failed to save FAQ');
+        alert(data.error || 'Failed to save FAQ');
       }
     } catch (error) {
       console.error('Error saving FAQ:', error);
-      alert('Error saving FAQ');
+      alert('Failed to save FAQ');
     }
-  };
 
-  const handleEdit = (faq) => {
-    setEditingFaq(faq);
-    setFormData({
-      question: faq.question,
-      answer: faq.answer,
-      order: faq.order || 0,
-      active: faq.active !== false
-    });
-    setShowModal(true);
+    setSaving(false);
   };
 
   const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this FAQ?')) return;
+    if (!confirm('Are you sure you want to delete this FAQ?')) {
+      return;
+    }
 
     try {
       const res = await fetch(`/api/faq/${id}`, {
         method: 'DELETE'
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (data.success || res.ok) {
+        setSuccessMessage('FAQ deleted successfully!');
         await fetchFAQs();
-        alert('FAQ deleted successfully!');
+        setTimeout(() => setSuccessMessage(''), 3000);
       } else {
-        alert('Failed to delete FAQ');
+        alert(data.error || 'Failed to delete FAQ');
       }
     } catch (error) {
       console.error('Error deleting FAQ:', error);
-      alert('Error deleting FAQ');
+      alert('Failed to delete FAQ');
     }
   };
 
@@ -110,319 +151,271 @@ export default function FAQManager() {
       const res = await fetch(`/api/faq/${faq._id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...faq, active: !faq.active })
+        body: JSON.stringify({
+          question: faq.question,
+          answer: faq.answer,
+          order: faq.order,
+          active: !faq.active
+        })
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (data.success || res.ok) {
         await fetchFAQs();
+      } else {
+        alert(data.error || 'Failed to update FAQ status');
       }
     } catch (error) {
       console.error('Error toggling FAQ status:', error);
+      alert('Failed to update FAQ status');
     }
   };
 
-  const resetForm = () => {
-    setFormData({
-      question: '',
-      answer: '',
-      order: 0,
-      active: true
-    });
-    setEditingFaq(null);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    resetForm();
-  };
+  if (loading) {
+    return (
+      <div className="admin-container">
+        <AdminNav />
+        <div className="container py-5 text-center">
+          <div className="h4">Loading FAQs...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#0a1929', color: 'white', padding: '2rem' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-          <div>
-            <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>FAQ Management</h1>
-            <p style={{ color: '#8b9cb6' }}>Manage your frequently asked questions</p>
-          </div>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <button
-              onClick={() => router.push('/admin/dashboard')}
-              style={{
-                padding: '0.75rem 1.5rem',
-                background: '#1e3a5f',
-                border: 'none',
-                borderRadius: '8px',
-                color: 'white',
-                cursor: 'pointer'
-              }}
-            >
-              Back to Dashboard
-            </button>
-            <button
-              onClick={() => setShowModal(true)}
-              style={{
-                padding: '0.75rem 1.5rem',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                border: 'none',
-                borderRadius: '8px',
-                color: 'white',
-                cursor: 'pointer',
-                fontWeight: 'bold'
-              }}
-            >
-              + Add New FAQ
-            </button>
-          </div>
+    <div className="admin-container">
+      <AdminNav />
+
+      <main className="container py-4">
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2 className="h2 fw-bold">Manage FAQs</h2>
+          <button
+            onClick={() => handleOpenModal()}
+            className="btn btn-primary"
+          >
+            <i className="fa fa-plus me-2"></i>
+            Add FAQ
+          </button>
         </div>
 
-        {/* FAQ List */}
-        {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem' }}>Loading FAQs...</div>
-        ) : (
-          <div style={{ display: 'grid', gap: '1rem' }}>
-            {faqs.length === 0 ? (
-              <div style={{
-                background: '#1e3a5f',
-                padding: '3rem',
-                borderRadius: '12px',
-                textAlign: 'center',
-                color: '#8b9cb6'
-              }}>
-                No FAQs yet. Click "Add New FAQ" to create one.
-              </div>
-            ) : (
-              faqs.map((faq, index) => (
-                <div
-                  key={faq._id}
-                  style={{
-                    background: '#1e3a5f',
-                    padding: '1.5rem',
-                    borderRadius: '12px',
-                    border: faq.active ? '2px solid #667eea' : '2px solid #3d5a80',
-                    opacity: faq.active ? 1 : 0.6
-                  }}
-                >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '0.5rem' }}>
-                        <span style={{
-                          background: '#667eea',
-                          padding: '0.25rem 0.75rem',
-                          borderRadius: '20px',
-                          fontSize: '0.875rem',
-                          fontWeight: 'bold'
-                        }}>
-                          #{faq.order || index + 1}
-                        </span>
-                        <span style={{
-                          background: faq.active ? '#10b981' : '#ef4444',
-                          padding: '0.25rem 0.75rem',
-                          borderRadius: '20px',
-                          fontSize: '0.75rem'
-                        }}>
-                          {faq.active ? 'Active' : 'Inactive'}
-                        </span>
-                      </div>
-                      <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', color: '#e2e8f0' }}>
-                        {faq.question}
-                      </h3>
-                      <p style={{ color: '#94a3b8', lineHeight: '1.6' }}>
-                        {faq.answer}
-                      </p>
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '1rem' }}>
-                      <button
-                        onClick={() => toggleActive(faq)}
-                        style={{
-                          padding: '0.5rem 1rem',
-                          background: faq.active ? '#ef4444' : '#10b981',
-                          border: 'none',
-                          borderRadius: '6px',
-                          color: 'white',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem'
-                        }}
-                      >
-                        {faq.active ? 'Deactivate' : 'Activate'}
-                      </button>
-                      <button
-                        onClick={() => handleEdit(faq)}
-                        style={{
-                          padding: '0.5rem 1rem',
-                          background: '#3b82f6',
-                          border: 'none',
-                          borderRadius: '6px',
-                          color: 'white',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem'
-                        }}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(faq._id)}
-                        style={{
-                          padding: '0.5rem 1rem',
-                          background: '#dc2626',
-                          border: 'none',
-                          borderRadius: '6px',
-                          color: 'white',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem'
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
+        {successMessage && (
+          <div className="alert alert-success alert-dismissible fade show" role="alert">
+            {successMessage}
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => setSuccessMessage('')}
+            ></button>
           </div>
         )}
 
-        {/* Modal */}
-        {showModal && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.75)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000,
-            padding: '1rem'
-          }}>
-            <div style={{
-              background: '#1e3a5f',
-              padding: '2rem',
-              borderRadius: '16px',
-              maxWidth: '600px',
-              width: '100%',
-              maxHeight: '90vh',
-              overflow: 'auto'
-            }}>
-              <h2 style={{ marginBottom: '1.5rem', fontSize: '1.5rem' }}>
-                {editingFaq ? 'Edit FAQ' : 'Add New FAQ'}
-              </h2>
+        {faqs.length === 0 ? (
+          <div className="admin-card text-center py-5">
+            <p className="text-muted mb-3">No FAQs yet</p>
+            <button
+              onClick={() => handleOpenModal()}
+              className="btn btn-primary"
+            >
+              Add Your First FAQ
+            </button>
+          </div>
+        ) : (
+          <div className="admin-card">
+            <div className="table-responsive">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th style={{ width: '60px' }}>Order</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th style={{ width: '100px' }}>Status</th>
+                    <th style={{ width: '200px' }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {faqs.map((faq) => (
+                    <tr key={faq._id}>
+                      <td>
+                        <span className="badge bg-secondary">{faq.order}</span>
+                      </td>
+                      <td>
+                        <strong>{faq.question}</strong>
+                      </td>
+                      <td>
+                        <div
+                          style={{
+                            maxWidth: '400px',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          {faq.answer}
+                        </div>
+                      </td>
+                      <td>
+                        <span
+                          className={`badge ${
+                            faq.active ? 'bg-success' : 'bg-warning text-dark'
+                          }`}
+                        >
+                          {faq.active ? 'Active' : 'Inactive'}
+                        </span>
+                      </td>
+                      <td>
+                        <div className="btn-group btn-group-sm" role="group">
+                          <button
+                            onClick={() => toggleActive(faq)}
+                            className={`btn ${
+                              faq.active ? 'btn-outline-warning' : 'btn-outline-success'
+                            }`}
+                            title={faq.active ? 'Deactivate' : 'Activate'}
+                          >
+                            <i className={`fa ${faq.active ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                          </button>
+                          <button
+                            onClick={() => handleOpenModal(faq)}
+                            className="btn btn-outline-primary"
+                            title="Edit"
+                          >
+                            <i className="fa fa-edit"></i>
+                          </button>
+                          <button
+                            onClick={() => handleDelete(faq._id)}
+                            className="btn btn-outline-danger"
+                            title="Delete"
+                          >
+                            <i className="fa fa-trash"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </main>
 
+      {/* Modal */}
+      {showModal && (
+        <div
+          className="modal fade show"
+          style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}
+          tabIndex="-1"
+        >
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">
+                  {editingFaq ? 'Edit FAQ' : 'Add New FAQ'}
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={handleCloseModal}
+                ></button>
+              </div>
               <form onSubmit={handleSubmit}>
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e2e8f0' }}>
-                    Question *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.question}
-                    onChange={(e) => setFormData({ ...formData, question: e.target.value })}
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      background: '#0a1929',
-                      border: '2px solid #3d5a80',
-                      borderRadius: '8px',
-                      color: 'white',
-                      fontSize: '1rem'
-                    }}
-                    placeholder="Enter your question"
-                  />
-                </div>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e2e8f0' }}>
-                    Answer *
-                  </label>
-                  <textarea
-                    value={formData.answer}
-                    onChange={(e) => setFormData({ ...formData, answer: e.target.value })}
-                    required
-                    rows={5}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      background: '#0a1929',
-                      border: '2px solid #3d5a80',
-                      borderRadius: '8px',
-                      color: 'white',
-                      fontSize: '1rem',
-                      resize: 'vertical'
-                    }}
-                    placeholder="Enter the answer"
-                  />
-                </div>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', color: '#e2e8f0' }}>
-                    Display Order
-                  </label>
-                  <input
-                    type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 0 })}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      background: '#0a1929',
-                      border: '2px solid #3d5a80',
-                      borderRadius: '8px',
-                      color: 'white',
-                      fontSize: '1rem'
-                    }}
-                  />
-                </div>
-
-                <div style={{ marginBottom: '1.5rem' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                <div className="modal-body">
+                  <div className="mb-3">
+                    <label className="form-label">Question *</label>
                     <input
-                      type="checkbox"
-                      checked={formData.active}
-                      onChange={(e) => setFormData({ ...formData, active: e.target.checked })}
-                      style={{ marginRight: '0.5rem', width: '1.25rem', height: '1.25rem', cursor: 'pointer' }}
+                      type="text"
+                      className="form-control"
+                      value={formData.question}
+                      onChange={(e) =>
+                        setFormData({ ...formData, question: e.target.value })
+                      }
+                      required
+                      placeholder="Enter the question"
                     />
-                    <span style={{ color: '#e2e8f0' }}>Active (visible on website)</span>
-                  </label>
-                </div>
+                  </div>
 
-                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+                  <div className="mb-3">
+                    <label className="form-label">Answer *</label>
+                    <textarea
+                      className="form-control"
+                      value={formData.answer}
+                      onChange={(e) =>
+                        setFormData({ ...formData, answer: e.target.value })
+                      }
+                      required
+                      rows={5}
+                      placeholder="Enter the answer"
+                    />
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-6 mb-3">
+                      <label className="form-label">Display Order</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        value={formData.order}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            order: parseInt(e.target.value) || 1
+                          })
+                        }
+                        min="1"
+                      />
+                      <small className="text-muted">
+                        Lower numbers appear first
+                      </small>
+                    </div>
+
+                    <div className="col-md-6 mb-3">
+                      <label className="form-label">Status</label>
+                      <div className="form-check form-switch mt-2">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          checked={formData.active}
+                          onChange={(e) =>
+                            setFormData({ ...formData, active: e.target.checked })
+                          }
+                          id="activeSwitch"
+                        />
+                        <label className="form-check-label" htmlFor="activeSwitch">
+                          {formData.active ? 'Active (visible on website)' : 'Inactive (hidden)'}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
                   <button
                     type="button"
+                    className="btn btn-secondary"
                     onClick={handleCloseModal}
-                    style={{
-                      padding: '0.75rem 1.5rem',
-                      background: '#3d5a80',
-                      border: 'none',
-                      borderRadius: '8px',
-                      color: 'white',
-                      cursor: 'pointer'
-                    }}
+                    disabled={saving}
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    style={{
-                      padding: '0.75rem 1.5rem',
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                      border: 'none',
-                      borderRadius: '8px',
-                      color: 'white',
-                      cursor: 'pointer',
-                      fontWeight: 'bold'
-                    }}
+                    className="btn btn-primary"
+                    disabled={saving}
                   >
-                    {editingFaq ? 'Update FAQ' : 'Create FAQ'}
+                    {saving ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2"></span>
+                        Saving...
+                      </>
+                    ) : (
+                      <>{editingFaq ? 'Update FAQ' : 'Create FAQ'}</>
+                    )}
                   </button>
                 </div>
               </form>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }

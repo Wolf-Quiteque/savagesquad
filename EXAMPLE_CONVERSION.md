@@ -70,7 +70,7 @@ export default function Home() {
               }} />
 
               <p dangerouslySetInnerHTML={{
-                __html: getContent('hero_description', 'html') || 'Savage sqaud provides surety bond certified credit services...'
+                __html: getContent('hero_description', 'html') || 'Savage squad provides surety bond certified credit services...'
               }} />
 
               <a className="btn-hover1" target="_blank" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09">

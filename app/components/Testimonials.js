@@ -116,7 +116,7 @@ export default function Testimonials() {
             type="text"
             as="p"
             className="text-center pt-3 pb-5 mb-2"
-            fallback="See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
+            fallback="See what our clients say about their experience with Savage Squad. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
           />
           <div className="prof-size" data-aos="zoom-in-up">
             <div className="prof-slider">
@@ -139,7 +139,7 @@ export default function Testimonials() {
                     type="text"
                     as="p"
                     className="text-center p-f-s"
-                    fallback="Savage sqaud helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!"
+                    fallback="Savage Squad helped me understand my credit report and provided clear guidance on improving my credit. Their professional service and transparent process made all the difference in my financial journey!"
                   />
                   <div className="prof-star pt-2 pb-2 text-center">
                     <span className="stars text-lg-start">
@@ -188,7 +188,7 @@ export default function Testimonials() {
           type="text"
           as="p"
           className="text-center pt-3 pb-5 mb-2"
-          fallback="See what our clients say about their experience with Savage sqaud. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
+          fallback="See what our clients say about their experience with Savage Squad. We take pride in helping people achieve their credit goals through professional, surety bond certified services and personalized support."
         />
         <div className="prof-size" data-aos="zoom-in-up">
           <div className="prof-slider">

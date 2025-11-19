@@ -112,7 +112,10 @@ export default function ContentEditor() {
             </div>
           ) : (
             content
-              .filter((item) => !item.section_id.toLowerCase().includes('testimonial'))
+              .filter((item) =>
+                !item.section_id.toLowerCase().includes('testimonial') &&
+                !item.section_id.toLowerCase().includes('faq')
+              )
               .map((item) => (
               <div key={item.section_id} className="col-12">
                 <div
