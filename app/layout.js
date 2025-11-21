@@ -4,13 +4,13 @@ import AnalyticsTracker from './components/AnalyticsTracker';
 import RootLayoutClient from './components/RootLayoutClient';
 
 export const metadata = {
-  title: "Savage Squad | Surety Bond Certified Credit Services & Analysis",
+  title: "Squad Credit Services | Surety Bond Certified Credit Services & Analysis",
   description: "Empower your credit journey with Savage Squad's professional, surety bond certified credit services. Get free consultation, expert analysis, and personalized solutions to improve your credit health.",
   keywords: "credit services, credit analysis, credit repair, credit consultation, surety bond certified, credit monitoring, financial goals, credit improvement",
 
   // Open Graph for Social Media
   openGraph: {
-    title: "Savage Squad | Professional Credit Services",
+    title: "Squad Credit Services | Professional Credit Services",
     description: "Empower your credit journey with surety bond certified credit services. Schedule your free consultation today!",
     url: "https://www.savagecreditservices.com",
     siteName: "Savage Squad",
@@ -21,7 +21,7 @@ export const metadata = {
         url: "/assets/open.png",
         width: 1200,
         height: 630,
-        alt: "Savage Squad Credit Services",
+        alt: "Squad Credit Services Credit Services",
       },
     ],
   },
@@ -29,7 +29,7 @@ export const metadata = {
   // Twitter Cards
   twitter: {
     card: "summary_large_image",
-    title: "Savage Squad | Professional Credit Services",
+    title: "Squad Credit Services | Professional Credit Services",
     description: "Expert credit analysis and personalized solutions. Surety bond certified. Free consultation available.",
     images: ["/assets/open-twitter.png"],
     creator: "@savagesquad",
