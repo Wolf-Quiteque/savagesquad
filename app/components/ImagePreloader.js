@@ -184,7 +184,7 @@ export default function ImagePreloader({ onLoadComplete }) {
 
         {/* Brand Text */}
         <div className="preloader-brand">
-          <h1>Savage Squad</h1>
+          <h1>Squad Credit Services</h1>
           <p>Loading your journey</p>
         </div>
       </div>
