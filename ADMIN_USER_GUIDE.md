@@ -13,6 +13,7 @@
 
 ## Getting Started
 
+
 ### Accessing the Admin Panel
 
 1. Navigate to your website's admin login page: `yourwebsite.com/admin/login`

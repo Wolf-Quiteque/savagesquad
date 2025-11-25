@@ -45,7 +45,10 @@ export default function Home() {
                      <li className="nav-item">
                     <a className="nav-link" href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer" >Sign In</a>
                   </li>
-                
+                  <li className="nav-item">
+                    <a className="nav-link" href="https://pulse.disputeprocess.com/jsp/custom_form.jsp?tab_id=b1FJZGR0UmN0bUkvV0xlVkZtYTBQZz09&add_affiliate=0&cust_type=3&company_id=VGhseWE3WVFyZnhkSTBnT0lzUm5JUT09&isLinkFromIframe=1&redirect_url=" target="_blank" rel="noopener noreferrer">Affiliate Sign Up</a>
+                  </li>
+
                   <li className="nav-item" style={{display:"none"}}>
                     <a id="search-bar-bt" className="nav-link" href="#"><i className="fa-solid fa-magnifying-glass"></i></a>
                   </li>
@@ -91,6 +94,9 @@ export default function Home() {
                 </li>
                     <li className="nav-item">
                   <a className="nav-link" href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer">Sign In</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="https://pulse.disputeprocess.com/jsp/custom_form.jsp?tab_id=b1FJZGR0UmN0bUkvV0xlVkZtYTBQZz09&add_affiliate=0&cust_type=3&company_id=VGhseWE3WVFyZnhkSTBnT0lzUm5JUT09&isLinkFromIframe=1&redirect_url=" target="_blank" rel="noopener noreferrer">Affiliate Sign Up</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09" target="_blank" rel="noopener noreferrer">Sign Up</a>
@@ -978,6 +984,9 @@ export default function Home() {
             </li>
             <li>
               <a href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer">Sign In</a>
+            </li>
+            <li>
+              <a href="https://pulse.disputeprocess.com/jsp/custom_form.jsp?tab_id=b1FJZGR0UmN0bUkvV0xlVkZtYTBQZz09&add_affiliate=0&cust_type=3&company_id=VGhseWE3WVFyZnhkSTBnT0lzUm5JUT09&isLinkFromIframe=1&redirect_url=" target="_blank" rel="noopener noreferrer">Affiliate Sign Up</a>
             </li>
             <li>
               <a href="https://portal.savagesquad.com/portal-signUp/signup.jsp?id=QUdmcDBvQzhXNTk4Yy92TXluRG5KUT09" target="_blank" rel="noopener noreferrer">Sign Up</a>
