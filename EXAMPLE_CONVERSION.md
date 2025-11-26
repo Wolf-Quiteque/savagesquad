@@ -4,6 +4,8 @@
 
 Your `app/page.js` is hardcoded. When you edit content in `/admin/editor`, the changes save to the database but don't show on the website.
 
+
+json
 ## Solution Example - Hero Section
 
 Here's a working example of how to convert just the hero section to use CMS content:
