@@ -30,7 +30,7 @@ export default function Home() {
               <div className="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul className="navbar-nav d-flex justify-content-center align-items-center gap-lg-2 gap-md-2 gap-sm-2 gap-2 mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <a className="nav-link active" href="index.html">Home</a>
+                    <a className="nav-link active" href="#">Home</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#about">About us</a>
@@ -81,7 +81,7 @@ export default function Home() {
               </div>
               <ul>
                 <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="index.html">Home</a>
+                  <a className="nav-link" aria-current="page" href="#">Home</a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#about">About</a>
@@ -90,7 +90,7 @@ export default function Home() {
                   <a className="nav-link" href="#faq">FAQ</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="contact">Contact</a>
+                  <a className="nav-link" href="#contact">Contact</a>
                 </li>
                     <li className="nav-item">
                   <a className="nav-link" href="https://portal.savagesquad.com" target="_blank" rel="noopener noreferrer">Sign In</a>
@@ -228,7 +228,7 @@ export default function Home() {
         </section>
         {/* ======== End of 1.2. hero section ========  */}
         {/* ======== 1.3. about section ========  */}
-        <section className="about">
+        <section className="about" id="about">
           <div className="container">
             <div className="row text-md-start text-sm-center text-center">
               <div className="col-md-6 d-flex justify-content-between">
@@ -831,7 +831,7 @@ export default function Home() {
       <Testimonials />
       {/* ======== End of 1.10. profaessional section ========  */}
       {/* ======== 1.11. question section ========  */}
-      <section className="question">
+      <section className="question" id="faq">
         <div className="container">
           <div className="row">
             <div className="question-text col-lg-6 col-md-6 tab-center" data-aos="fade-up">
@@ -971,7 +971,7 @@ export default function Home() {
           </div>
           <ul className="d-flex align-items-center justify-content-center">
             <li>
-              <a href="index.html">Home</a>
+              <a href="#">Home</a>
             </li>
             <li>
               <a href="#about">About us</a>

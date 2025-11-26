@@ -368,3 +368,13 @@ accordionItems.forEach((item, index) => {
     });
   }
 
+  // Close mobile sidebar when clicking on internal navigation links
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidenavLinks = document.querySelectorAll('#mySidenav a[href^="#"]');
+    sidenavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        closeNav();
+      });
+    });
+  });
+

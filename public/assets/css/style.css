@@ -79,6 +79,11 @@ License URI:
 
 */
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 div,
